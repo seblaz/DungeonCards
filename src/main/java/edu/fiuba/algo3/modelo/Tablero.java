@@ -5,7 +5,8 @@ public class Tablero {
     public enum Direccion {
         DERECHA(1, 0),
         IZQUIERDA(-1, 0),
-        ABAJO(0, 1);
+        ABAJO(0, 1),
+        ARRIBA(0, -1);
 
         private final int horizontal;
         private final int vertical;
