@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Enemigo {
+public class Enemigo implements Carta{
     private final Salud salud;
 
     public Enemigo(int puntosDeSalud) {
