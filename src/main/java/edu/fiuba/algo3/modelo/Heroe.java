@@ -16,4 +16,8 @@ public class Heroe {
         enemigo.recibirDanio(this.salud.puntos());
         this.salud.disminuir(danio);
     }
+
+    public void recibirDanio(int danio) {
+        this.salud.disminuir(danio);
+    }
 }

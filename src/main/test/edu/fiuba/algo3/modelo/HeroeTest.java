@@ -59,4 +59,15 @@ public class HeroeTest {
 
         assertEquals(puntosEnemigo - 10, enemigo.puntosDeSalud());
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 1, 5})
+    public void alRecibirDanioSeDisminuyeSuSalud(int danio) {
+        Heroe heroe = new Heroe();
+        int saludInicial = heroe.puntosDeSalud();
+
+        heroe.recibirDanio(danio);
+
+        assertEquals(saludInicial - danio, heroe.puntosDeSalud());
+    }
 }
