@@ -22,7 +22,7 @@ public class TableroTest {
     }
 
     @Test
-    public void devuelveLaCartaALaIzquierda() {
+    public void devuelveLaCartaALaDerecha() {
         Carta carta = this.tablero.obtenerAdyacente(this.cartas[0][0], Tablero.Direccion.DERECHA);
         assertEquals(this.cartas[0][1], carta);
     }
