@@ -70,4 +70,15 @@ public class HeroeTest {
 
         assertEquals(saludInicial - danio, heroe.puntosDeSalud());
     }
+
+    @Test
+    public void alActivarloNoHaceNada() {
+        Heroe heroe = new Heroe();
+        int saludInicial = heroe.puntosDeSalud();
+
+        heroe.activar(heroe);
+
+        assertEquals(saludInicial, heroe.puntosDeSalud());
+    }
+
 }
