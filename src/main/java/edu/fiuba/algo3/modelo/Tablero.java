@@ -3,12 +3,15 @@ package edu.fiuba.algo3.modelo;
 
 public class Tablero {
     public enum Direccion {
-        DERECHA(1);
+        DERECHA(1, 0),
+        ABAJO(0, 1);
 
-        public final int valor;
+        public final int horizontal;
+        public final int vertical;
 
-        Direccion(int valor) {
-            this.valor = valor;
+        Direccion(int horizontal, int vertical) {
+            this.horizontal = horizontal;
+            this.vertical = vertical;
         }
     }
 
@@ -20,7 +23,7 @@ public class Tablero {
 
     public Carta obtenerAdyacente(Carta carta, Direccion direccion) {
         int[] indice = this.indice(carta);
-        return this.cartas[indice[0]][indice[1] + 1];
+        return this.cartas[indice[0] + direccion.vertical][indice[1] + direccion.horizontal];
     }
 
     private int[] indice(Carta carta) {
