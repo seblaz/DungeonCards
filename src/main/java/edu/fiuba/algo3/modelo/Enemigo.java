@@ -18,4 +18,8 @@ public class Enemigo {
     public void recibirDanio(int danio) {
         this.salud.disminuir(danio);
     }
+
+    public void activar(Heroe heroe) {
+        heroe.atacar(this);
+    }
 }

@@ -60,4 +60,17 @@ public class EnemigoTest {
 
         assertEquals(0, enemigo.puntosDeDanio());
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 5})
+    public void alActivarloElHeroeLoAtaca(int saludEnemigo) {
+        Enemigo enemigo = new Enemigo(saludEnemigo);
+        Heroe heroe = new Heroe();
+        int saludInicialHeroe = heroe.puntosDeSalud();
+
+        enemigo.activar(heroe);
+
+        assertEquals(0, enemigo.puntosDeSalud());
+        assertEquals(saludInicialHeroe - saludEnemigo, heroe.puntosDeSalud());
+    }
 }
