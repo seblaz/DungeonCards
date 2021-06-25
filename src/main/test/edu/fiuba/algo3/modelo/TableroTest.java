@@ -31,6 +31,7 @@ public class TableroTest {
     public static Stream<Arguments> cartasAdyacentes() {
         Carta[][] cartas = cartas();
         Tablero tablero = new Tablero(cartas);
+        // Índices: (fila, columna)
         return Stream.of(
                 Arguments.of(tablero, cartas[0][0], Tablero.Direccion.DERECHA, cartas[0][1]),
                 Arguments.of(tablero, cartas[0][1], Tablero.Direccion.DERECHA, cartas[0][2]),
@@ -38,7 +39,9 @@ public class TableroTest {
                 Arguments.of(tablero, cartas[1][1], Tablero.Direccion.DERECHA, cartas[1][2]),
                 Arguments.of(tablero, cartas[2][0], Tablero.Direccion.DERECHA, cartas[2][1]),
                 Arguments.of(tablero, cartas[2][1], Tablero.Direccion.DERECHA, cartas[2][2]),
-                Arguments.of(tablero, cartas[0][0], Tablero.Direccion.ABAJO, cartas[1][0])
+                Arguments.of(tablero, cartas[0][0], Tablero.Direccion.ABAJO, cartas[1][0]),
+                Arguments.of(tablero, cartas[1][0], Tablero.Direccion.ABAJO, cartas[2][0]),
+                Arguments.of(tablero, cartas[1][2], Tablero.Direccion.ABAJO, cartas[2][2])
         );
     }
 }
