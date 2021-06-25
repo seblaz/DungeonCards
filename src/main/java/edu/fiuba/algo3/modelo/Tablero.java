@@ -4,10 +4,11 @@ package edu.fiuba.algo3.modelo;
 public class Tablero {
     public enum Direccion {
         DERECHA(1, 0),
+        IZQUIERDA(-1, 0),
         ABAJO(0, 1);
 
-        public final int horizontal;
-        public final int vertical;
+        private final int horizontal;
+        private final int vertical;
 
         Direccion(int horizontal, int vertical) {
             this.horizontal = horizontal;
