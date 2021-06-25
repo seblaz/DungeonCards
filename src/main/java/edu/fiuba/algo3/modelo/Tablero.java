@@ -20,7 +20,7 @@ public class Tablero {
 
     public Carta obtenerAdyacente(Carta carta, Direccion direccion) {
         int[] indice = this.indice(carta);
-        return this.cartas[0][indice[1] + 1];
+        return this.cartas[indice[0]][indice[1] + 1];
     }
 
     private int[] indice(Carta carta) {
