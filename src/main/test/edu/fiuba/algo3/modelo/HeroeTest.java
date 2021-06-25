@@ -62,7 +62,7 @@ public class HeroeTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 1, 5})
-    public void alRecibirDanioSeDisminuyeSuSalud(int danio) {
+    public void alRecibirDanioDisminuyeSuSalud(int danio) {
         Heroe heroe = new Heroe();
         int saludInicial = heroe.puntosDeSalud();
 

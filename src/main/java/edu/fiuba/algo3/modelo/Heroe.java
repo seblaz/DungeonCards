@@ -14,7 +14,7 @@ public class Heroe {
     public void atacar(Enemigo enemigo) {
         int danio = enemigo.puntosDeDanio();
         enemigo.recibirDanio(this.salud.puntos());
-        this.salud.disminuir(danio);
+        this.recibirDanio(danio);
     }
 
     public void recibirDanio(int danio) {
