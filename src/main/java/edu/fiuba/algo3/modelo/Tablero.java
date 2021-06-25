@@ -21,6 +21,4 @@ public class Tablero {
     public Carta obtenerAdyacente(Carta carta, Direccion derecha) {
         return this.cartas[0][1];
     }
-
-
 }
