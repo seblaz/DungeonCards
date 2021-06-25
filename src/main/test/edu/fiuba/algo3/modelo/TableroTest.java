@@ -34,7 +34,8 @@ public class TableroTest {
         return Stream.of(
                 Arguments.of(tablero, cartas[0][0], Tablero.Direccion.DERECHA, cartas[0][1]),
                 Arguments.of(tablero, cartas[0][1], Tablero.Direccion.DERECHA, cartas[0][2]),
-                Arguments.of(tablero, cartas[1][0], Tablero.Direccion.DERECHA, cartas[1][1])
+                Arguments.of(tablero, cartas[1][0], Tablero.Direccion.DERECHA, cartas[1][1]),
+                Arguments.of(tablero, cartas[1][1], Tablero.Direccion.DERECHA, cartas[1][2])
         );
     }
 }
