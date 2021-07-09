@@ -78,4 +78,12 @@ public class VectorTest {
         Vector esperado = new Vector(0, 0);
         assertEquals(esperado, resultado);
     }
+
+    @Test
+    public void multiplicarUnEscalarDevuelveCadaComponenteMultiplicada() {
+        Vector vector = new Vector(1, 2);
+        Vector resultado = vector.multiplicar(2);
+        Vector esperado = new Vector(2, 4);
+        assertEquals(esperado, resultado);
+    }
 }

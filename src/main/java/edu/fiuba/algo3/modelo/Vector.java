@@ -46,6 +46,6 @@ public class Vector {
     }
 
     public Vector multiplicar(int factor) {
-        return new Vector(0, 0);
+        return new Vector(this.x * factor, this.y * factor);
     }
 }
