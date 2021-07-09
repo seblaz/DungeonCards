@@ -31,7 +31,7 @@ public class Tablero {
         return this.obtener(adyacente);
     }
 
-    private Carta obtener(Vector posicion) {
+    public Carta obtener(Vector posicion) {
         return this.cartas[posicion.y()][posicion.x()];
     }
 
@@ -84,9 +84,5 @@ public class Tablero {
         int[] unIndice = this.indice(una);
         int[] otroIndice = this.indice(otra);
         return new int[] { unIndice[0] - otroIndice[0], unIndice[1] - otroIndice[1]};
-    }
-
-    public Carta obtener(int fila, int columna) {
-        return cartas[fila][columna];
     }
 }

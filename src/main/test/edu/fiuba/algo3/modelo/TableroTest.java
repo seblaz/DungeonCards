@@ -1,17 +1,16 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.ejemplos.CartaEjemplo;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class TableroTest {
 
@@ -55,7 +54,7 @@ public class TableroTest {
     @ParameterizedTest
     @MethodSource("cartasPorPosicion")
     public void obtieneLasCartasDelTablero(Tablero tablero, int columna, int fila, Carta esperado) {
-        assertEquals(esperado, tablero.obtener(columna, fila));
+        assertEquals(esperado, tablero.obtener(new Vector(fila, columna)));
     }
 
     public static Stream<Arguments> cartasPorPosicion() {
@@ -85,7 +84,7 @@ public class TableroTest {
         Tablero tablero = new Tablero(cartas);
         tablero.activar(heroe, cartaADestruir);
 
-        assertEquals(heroe, tablero.obtener(columnaCarta, filaCarta));
+        assertEquals(heroe, tablero.obtener(new Vector(filaCarta, columnaCarta)));
     }
 
     public static Stream<Arguments> cartasADestruir() {
@@ -114,7 +113,7 @@ public class TableroTest {
         Tablero tablero = new Tablero(cartas);
         tablero.activar(heroe, cartaAPermanecer);
 
-        assertEquals(cartaAPermanecer, tablero.obtener(0, 0));
+        assertEquals(cartaAPermanecer, tablero.obtener(new Vector(0, 0)));
     }
 
     @ParameterizedTest
@@ -136,7 +135,7 @@ public class TableroTest {
         Tablero tablero = new Tablero(cartas);
         tablero.activar(heroe, cartaADestruir);
 
-        assertEquals(cartaAMover, tablero.obtener(posicionHeroe[0], posicionHeroe[1]));
+        assertEquals(cartaAMover, tablero.obtener(new Vector(posicionHeroe[1], posicionHeroe[0])));
     }
 
     public static Stream<Arguments> cartasAMover() {
