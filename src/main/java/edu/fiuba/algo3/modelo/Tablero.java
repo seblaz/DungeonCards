@@ -26,20 +26,21 @@ public class Tablero {
     }
 
     public Carta obtenerAdyacente(Carta carta, Direccion direccion) {
-        int[] indice = this.indice(carta);
-        return this.cartas[indice[0] + direccion.vertical][indice[1] + direccion.horizontal];
+        Vector posicion = this.posicion(carta);
+        Vector adyacente = posicion.sumar(direccion.direccion);
+        return this.cartas[adyacente.y()][adyacente.x()];
     }
 
-//    private Vector posicion(Carta carta) {
-//        for (int i = 0; i < this.cartas.length; i++) {
-//            for (int j = 0; j < this.cartas[i].length; j++) {
-//                if (this.cartas[i][j] == carta) {
-//                    return new Vector(i, j);
-//                }
-//            }
-//        }
-//        return null;
-//    }
+    private Vector posicion(Carta carta) {
+        for (int i = 0; i < this.cartas.length; i++) {
+            for (int j = 0; j < this.cartas[i].length; j++) {
+                if (this.cartas[i][j] == carta) {
+                    return new Vector(j, i);
+                }
+            }
+        }
+        return null;
+    }
 
     private int[] indice(Carta carta) {
         for (int i = 0; i < this.cartas.length; i++) {
