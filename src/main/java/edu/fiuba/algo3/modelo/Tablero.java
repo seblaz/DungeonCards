@@ -40,8 +40,10 @@ public class Tablero {
     }
 
     public void activar(Heroe heroe, Carta carta) {
-        int[] indice = this.indice(carta);
-        this.cartas[indice[0]][indice[1]] = heroe;
+        if (!carta.activar(heroe)) {
+            int[] indice = this.indice(carta);
+            this.cartas[indice[0]][indice[1]] = heroe;
+        }
     }
 
     public Carta obtener(int fila, int columna) {

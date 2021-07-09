@@ -100,4 +100,20 @@ public class TableroTest {
                 Arguments.of(2, 2, 2, 1)
         );
     }
+
+    @Test
+    public void siLaCartaNoEsDestruidaNoSeOcupaSuPosicion() {
+        Carta[][] cartas = cartas();
+        Heroe heroe = new Heroe();
+        Carta cartaAPermanecer = mock(Carta.class);
+        when(cartaAPermanecer.activar(heroe)).thenReturn(true);
+
+        cartas[0][0] = cartaAPermanecer;
+        cartas[0][1] = heroe;
+
+        Tablero tablero = new Tablero(cartas);
+        tablero.activar(heroe, cartaAPermanecer);
+
+        assertEquals(cartaAPermanecer, tablero.obtener(0, 0));
+    }
 }
