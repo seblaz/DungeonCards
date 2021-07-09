@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EnemigoTest {
 
@@ -72,5 +73,14 @@ public class EnemigoTest {
 
         assertEquals(0, enemigo.puntosDeSalud());
         assertEquals(saludInicialHeroe - saludEnemigo, heroe.puntosDeSalud());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {11, 15})
+    public void siNoMuereAlActivarloDevuelveTrue(int saludEnemigo) {
+        Enemigo enemigo = new Enemigo(saludEnemigo);
+        Heroe heroe = new Heroe();
+
+        assertTrue(enemigo.activar(heroe));
     }
 }
