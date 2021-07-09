@@ -28,7 +28,11 @@ public class Tablero {
     public Carta obtenerAdyacente(Carta carta, Direccion direccion) {
         Vector posicion = this.posicion(carta);
         Vector adyacente = posicion.sumar(direccion.direccion);
-        return this.cartas[adyacente.y()][adyacente.x()];
+        return this.obtener(adyacente);
+    }
+
+    private Carta obtener(Vector posicion) {
+        return this.cartas[posicion.y()][posicion.x()];
     }
 
     private Vector posicion(Carta carta) {
