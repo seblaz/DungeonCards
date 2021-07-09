@@ -25,7 +25,7 @@ public class Posicion {
     }
 
     public Posicion restar(Posicion posicion) {
-        return new Posicion(0, 0);
+        return new Posicion(this.x - posicion.x, this.y - posicion.y);
     }
 
     @Override

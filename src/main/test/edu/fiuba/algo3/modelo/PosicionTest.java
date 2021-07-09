@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import javafx.geometry.Pos;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -39,10 +40,18 @@ public class PosicionTest {
     }
 
     @Test
-    public void restarSeASiMismoDevuelveElOrigen() {
+    public void restarseASiMismoDevuelveElOrigen() {
         Posicion posicion = new Posicion(1, 2);
         Posicion resultado = posicion.restar(posicion);
         Posicion esperado = new Posicion(0, 0);
         assertEquals(esperado, resultado);
+    }
+
+    @Test
+    public void otraPosicionMenosElOrigenDevuelveLAPosicion() {
+        Posicion posicion = new Posicion(1, 2);
+        Posicion origen = new Posicion(0, 0);
+        Posicion resultado = posicion.restar(origen);
+        assertEquals(posicion, resultado);
     }
 }
