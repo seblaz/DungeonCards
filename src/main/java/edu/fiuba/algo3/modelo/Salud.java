@@ -16,6 +16,6 @@ public class Salud {
     }
 
     public boolean vivo() {
-        return false;
+        return this.puntos > 0;
     }
 }
