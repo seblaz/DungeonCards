@@ -42,6 +42,6 @@ public class Vector {
     }
 
     public Vector sumar(Vector origen) {
-        return this;
+        return new Vector(this.x + origen.x, this.y + origen.y);
     }
 }

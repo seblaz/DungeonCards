@@ -61,4 +61,13 @@ public class VectorTest {
         Vector resultado = vector.sumar(origen);
         assertEquals(vector, resultado);
     }
+
+    @Test
+    public void sumarConOtroDevuelveLaSuma() {
+        Vector vector = new Vector(1, 2);
+        Vector origen = new Vector(2, 2);
+        Vector resultado = vector.sumar(origen);
+        Vector esperado = new Vector(3, 4);
+        assertEquals(esperado, resultado);
+    }
 }
