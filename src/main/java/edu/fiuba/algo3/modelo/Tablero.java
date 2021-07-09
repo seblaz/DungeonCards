@@ -8,13 +8,9 @@ public class Tablero {
         ABAJO(0, 1),
         ARRIBA(0, -1);
 
-        private final int horizontal;
-        private final int vertical;
         private final Vector direccion;
 
         Direccion(int horizontal, int vertical) {
-            this.horizontal = horizontal;
-            this.vertical = vertical;
             this.direccion = new Vector(horizontal, vertical);
         }
     }
