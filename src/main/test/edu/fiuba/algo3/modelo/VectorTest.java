@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import javafx.geometry.Pos;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -10,21 +9,21 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PosicionTest {
+public class VectorTest {
 
     @Test
     public void porDefectoComienzaEnElCeroCero() {
-        Posicion posicion = new Posicion();
-        assertEquals(0, posicion.x());
-        assertEquals(0, posicion.y());
+        Vector vector = new Vector();
+        assertEquals(0, vector.x());
+        assertEquals(0, vector.y());
     }
 
     @ParameterizedTest
     @MethodSource("posicionesIniciales")
     public void comienzaDondeSeIndiqueEnElConstructor(int x, int y) {
-        Posicion posicion = new Posicion(x, y);
-        assertEquals(x, posicion.x());
-        assertEquals(y, posicion.y());
+        Vector vector = new Vector(x, y);
+        assertEquals(x, vector.x());
+        assertEquals(y, vector.y());
     }
 
     public static Stream<Arguments> posicionesIniciales() {
@@ -41,17 +40,17 @@ public class PosicionTest {
 
     @Test
     public void restarseASiMismoDevuelveElOrigen() {
-        Posicion posicion = new Posicion(1, 2);
-        Posicion resultado = posicion.restar(posicion);
-        Posicion esperado = new Posicion(0, 0);
+        Vector posicion = new Vector(1, 2);
+        Vector resultado = posicion.restar(posicion);
+        Vector esperado = new Vector(0, 0);
         assertEquals(esperado, resultado);
     }
 
     @Test
     public void otraPosicionMenosElOrigenDevuelveLAPosicion() {
-        Posicion posicion = new Posicion(1, 2);
-        Posicion origen = new Posicion(0, 0);
-        Posicion resultado = posicion.restar(origen);
-        assertEquals(posicion, resultado);
+        Vector vector = new Vector(1, 2);
+        Vector origen = new Vector(0, 0);
+        Vector resultado = vector.restar(origen);
+        assertEquals(vector, resultado);
     }
 }
