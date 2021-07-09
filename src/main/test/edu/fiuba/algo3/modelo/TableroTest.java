@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.ejemplos.CartaEjemplo;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -50,17 +51,19 @@ public class TableroTest {
         );
     }
 
-    @Disabled
+    @Test
     public void siLaCartaDesapareceSeCompletaConUnaNueva() {
         Carta[][] cartas = cartas();
         Heroe heroe = new Heroe();
         Carta cartaADestruir = mock(Carta.class);
-//        when(cartaADestruir.activar(heroe)).thenReturn(false);
+        when(cartaADestruir.activar(heroe)).thenReturn(false);
+
         cartas[0][2] = cartaADestruir;
+        cartas[0][1] = heroe;
 
         Tablero tablero = new Tablero(cartas);
-//        tablero.activar(heroe, cartaADestruir);
+        tablero.activar(heroe, cartaADestruir);
 
-//        assertEquals(heroe, tablero.obtener(0, 2));
+        assertEquals(heroe, tablero.obtener(0, 2));
     }
 }

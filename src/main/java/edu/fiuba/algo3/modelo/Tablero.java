@@ -38,4 +38,11 @@ public class Tablero {
         }
         return new int[0];
     }
+
+    public void activar(Heroe heroe, Carta cartaADestruir) {
+    }
+
+    public Carta obtener(int fila, int columna) {
+        return cartas[0][1];
+    }
 }
