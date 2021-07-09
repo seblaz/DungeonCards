@@ -4,6 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class SaludTest {
 
@@ -29,6 +30,14 @@ public class SaludTest {
         Salud salud = new Salud(10);
         salud.disminuir(puntos);
         assertEquals(0, salud.puntos());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {11, 13, Integer.MAX_VALUE})
+    public void siDisminuyeMasDeLaSaludTotalNoEstaVivo(int puntos) {
+        Salud salud = new Salud(10);
+        salud.disminuir(puntos);
+        assertFalse(salud.vivo());
     }
 
     @ParameterizedTest

@@ -14,4 +14,8 @@ public class Salud {
     public void disminuir(int puntos) {
         this.puntos -= Math.min(this.puntos, puntos);
     }
+
+    public boolean vivo() {
+        return false;
+    }
 }

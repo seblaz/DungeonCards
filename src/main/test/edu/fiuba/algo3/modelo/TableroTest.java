@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.ejemplos.CartaEjemplo;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class TableroTest {
 
@@ -48,5 +48,19 @@ public class TableroTest {
                 Arguments.of(tablero, cartas[1][0], Tablero.Direccion.ARRIBA, cartas[0][0]),
                 Arguments.of(tablero, cartas[2][2], Tablero.Direccion.ARRIBA, cartas[1][2])
         );
+    }
+
+    @Disabled
+    public void siLaCartaDesapareceSeCompletaConUnaNueva() {
+        Carta[][] cartas = cartas();
+        Heroe heroe = new Heroe();
+        Carta cartaADestruir = mock(Carta.class);
+//        when(cartaADestruir.activar(heroe)).thenReturn(false);
+        cartas[0][2] = cartaADestruir;
+
+        Tablero tablero = new Tablero(cartas);
+//        tablero.activar(heroe, cartaADestruir);
+
+//        assertEquals(heroe, tablero.obtener(0, 2));
     }
 }
