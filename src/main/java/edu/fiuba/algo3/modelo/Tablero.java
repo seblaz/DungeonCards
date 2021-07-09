@@ -59,7 +59,8 @@ public class Tablero {
 
     public void activar(Heroe heroe, Carta carta) {
         if (!carta.activar(heroe)) {
-            int[] velocidad = this.velocidad(carta, heroe);
+            Vector velocidadV = this.velocidad(carta, heroe);
+            int[] velocidad = {velocidadV.y(), velocidadV.x()};
             try {
                 Carta opuesta = this.opuesta(heroe, velocidad);
                 this.mover(heroe, velocidad);
@@ -80,9 +81,9 @@ public class Tablero {
         this.cartas[indice[0] + velocidad[0]][indice[1] + velocidad[1]] = carta;
     }
 
-    private int[] velocidad(Carta una, Carta otra) {
-        int[] unIndice = this.indice(una);
-        int[] otroIndice = this.indice(otra);
-        return new int[] { unIndice[0] - otroIndice[0], unIndice[1] - otroIndice[1]};
+    private Vector velocidad(Carta una, Carta otra) {
+        Vector unaPosicion = this.posicion(una);
+        Vector otraPosicion = this.posicion(otra);
+        return unaPosicion.restar(otraPosicion);
     }
 }
