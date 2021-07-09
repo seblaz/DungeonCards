@@ -1,21 +1,13 @@
-![tp2](https://github.com/seblaz/algo3_tp2/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/seblaz/algo3_tp2/branch/master/graph/badge.svg)](https://codecov.io/gh/seblaz/algo3_tp2)
+![tp2](https://github.com/seblaz/DungeonCards/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/seblaz/DungeonCards/branch/master/graph/badge.svg)](https://codecov.io/gh/seblaz/DungeonCards)
 
-# TP2 Algoritmos 3: {nombre} 
+# Dungeon Cards 
 
-Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
+[Dungeon Cards](https://play.google.com/store/apps/details?id=com.The717pixels.DungeonCards&hl=es_AR&gl=US) es una divertida mezcla de rompecabezas, juego de cartas, y juego clásico de exporación de mazmorras. Cada movimiento de tu carta crea una situación única y desafiante: un mini rompecabezas que requiere pensamiento estratégico para resolverse, y al lograr completarlo te recompensa con una sensación de logro que rápidamente se vuelve adictiva.
 
-## Grupo {N}
-
-* **Integrante 1** - [integrante1](https://github.com/integrante1)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
-
-Corrector: **{Corrector}**
 
 ## Aplicación
 
-La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/seblaz/algo3_tp2/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
+La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/seblaz/DungeonCards/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
 
 ```bash
 $ java -jar <archivo.jar>
