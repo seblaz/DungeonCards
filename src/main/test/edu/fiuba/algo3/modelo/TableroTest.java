@@ -53,8 +53,8 @@ public class TableroTest {
 
     @ParameterizedTest
     @MethodSource("cartasPorPosicion")
-    public void obtieneLasCartasDelTablero(Tablero tablero, int columna, int fila, Carta esperado) {
-        assertEquals(esperado, tablero.obtener(new Vector(fila, columna)));
+    public void obtieneLasCartasDelTablero(Tablero tablero, Vector posicion, Carta esperado) {
+        assertEquals(esperado, tablero.obtener(posicion));
     }
 
     public static Stream<Arguments> cartasPorPosicion() {
@@ -62,11 +62,11 @@ public class TableroTest {
         Tablero tablero = new Tablero(cartas);
         // Índices: (fila, columna)
         return Stream.of(
-                Arguments.of(tablero, 0, 0, cartas[0][0]),
-                Arguments.of(tablero, 1, 0, cartas[1][0]),
-                Arguments.of(tablero, 0, 1, cartas[0][1]),
-                Arguments.of(tablero, 2, 1, cartas[2][1]),
-                Arguments.of(tablero, 2, 2, cartas[2][2])
+                Arguments.of(tablero, new Vector(0, 0), cartas[0][0]),
+                Arguments.of(tablero,  new Vector(0, 1), cartas[1][0]),
+                Arguments.of(tablero,  new Vector(1, 0), cartas[0][1]),
+                Arguments.of(tablero,  new Vector(1, 2), cartas[2][1]),
+                Arguments.of(tablero,  new Vector(2, 2), cartas[2][2])
         );
     }
 
