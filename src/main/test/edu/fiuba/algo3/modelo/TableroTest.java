@@ -92,12 +92,12 @@ public class TableroTest {
         // Índices: (fila, columna)
         return Stream.of(
                 //       posCarta, posHeroe
-                Arguments.of(0, 2, 0, 1)
-//                Arguments.of(0, 1, 0, 2)
-//                Arguments.of(0, 0, 0, 1),
-//                Arguments.of(0, 1, 1, 1),
-//                Arguments.of(2, 2, 1, 2),
-//                Arguments.of(2, 2, 2, 1)
+                Arguments.of(0, 2, 0, 1),
+                Arguments.of(0, 1, 0, 2),
+                Arguments.of(0, 0, 0, 1),
+                Arguments.of(0, 1, 1, 1),
+                Arguments.of(2, 2, 1, 2),
+                Arguments.of(2, 2, 2, 1)
         );
     }
 }
