@@ -60,7 +60,6 @@ public class TableroTest {
     public static Stream<Arguments> cartasPorPosicion() {
         Carta[][] cartas = cartas();
         Tablero tablero = new Tablero(cartas);
-        // Índices: (fila, columna)
         return Stream.of(
                 Arguments.of(tablero, new Vector(0, 0), cartas[0][0]),
                 Arguments.of(tablero,  new Vector(0, 1), cartas[1][0]),

@@ -21,12 +21,6 @@ public class Tablero {
         this.cartas = cartas.clone();
     }
 
-    public Carta obtenerAdyacente(Carta carta, Direccion direccion) {
-        Vector posicion = this.posicion(carta);
-        Vector adyacente = posicion.sumar(direccion.direccion);
-        return this.obtener(adyacente);
-    }
-
     public Carta obtener(Vector posicion) {
         return this.cartas[posicion.y()][posicion.x()];
     }
@@ -44,6 +38,12 @@ public class Tablero {
             }
         }
         return null;
+    }
+
+    public Carta obtenerAdyacente(Carta carta, Direccion direccion) {
+        Vector posicion = this.posicion(carta);
+        Vector adyacente = posicion.sumar(direccion.direccion);
+        return this.obtener(adyacente);
     }
 
     public void activar(Heroe heroe, Carta carta) {
