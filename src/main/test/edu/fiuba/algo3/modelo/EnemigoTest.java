@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EnemigoTest {
 
@@ -82,5 +81,14 @@ public class EnemigoTest {
         Heroe heroe = new Heroe();
 
         assertTrue(enemigo.activar(heroe));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 5})
+    public void siMuereAlActivarloDevuelveFalse(int saludEnemigo) {
+        Enemigo enemigo = new Enemigo(saludEnemigo);
+        Heroe heroe = new Heroe();
+
+        assertFalse(enemigo.activar(heroe));
     }
 }

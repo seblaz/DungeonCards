@@ -21,6 +21,6 @@ public class Enemigo {
 
     public boolean activar(Heroe heroe) {
         heroe.atacar(this);
-        return true;
+        return this.salud.vivo();
     }
 }
