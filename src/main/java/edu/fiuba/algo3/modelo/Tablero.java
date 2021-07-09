@@ -59,10 +59,9 @@ public class Tablero {
 
     public void activar(Heroe heroe, Carta carta) {
         if (!carta.activar(heroe)) {
-            Vector velocidadV = this.velocidad(carta, heroe);
-            int[] velocidad = {velocidadV.y(), velocidadV.x()};
+            Vector velocidad = this.velocidad(carta, heroe);
             try {
-                Carta opuesta = this.opuesta(heroe, velocidadV);
+                Carta opuesta = this.opuesta(heroe, velocidad);
                 this.mover(heroe, velocidad);
                 this.mover(opuesta, velocidad);
             } catch (IndexOutOfBoundsException ignored) {
@@ -76,9 +75,10 @@ public class Tablero {
         return this.obtener(posicion.sumar(velocidad.multiplicar(-1)));
     }
 
-    private void mover(Carta carta, int[] velocidad) {
-        int[] indice = this.indice(carta);
-        this.cartas[indice[0] + velocidad[0]][indice[1] + velocidad[1]] = carta;
+    private void mover(Carta carta, Vector velocidad) {
+        Vector posicionInicial = this.posicion(carta);
+        Vector posicionFinal = posicionInicial.sumar(velocidad);
+        this.cartas[posicionFinal.y()][posicionFinal.x()] = carta;
     }
 
     private Vector velocidad(Carta una, Carta otra) {
