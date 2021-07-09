@@ -43,6 +43,6 @@ public class Tablero {
     }
 
     public Carta obtener(int fila, int columna) {
-        return cartas[0][1];
+        return cartas[fila][columna];
     }
 }

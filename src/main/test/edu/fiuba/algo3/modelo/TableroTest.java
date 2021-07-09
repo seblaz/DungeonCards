@@ -51,7 +51,26 @@ public class TableroTest {
         );
     }
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("cartasPorPosicion")
+    public void obtieneLasCartasDelTablero(Tablero tablero, int columna, int fila, Carta esperado) {
+        assertEquals(esperado, tablero.obtener(columna, fila));
+    }
+
+    public static Stream<Arguments> cartasPorPosicion() {
+        Carta[][] cartas = cartas();
+        Tablero tablero = new Tablero(cartas);
+        // Índices: (fila, columna)
+        return Stream.of(
+            Arguments.of(tablero, 0, 0, cartas[0][0]),
+            Arguments.of(tablero, 1, 0, cartas[1][0]),
+            Arguments.of(tablero, 0, 1, cartas[0][1]),
+            Arguments.of(tablero, 2, 1, cartas[2][1]),
+            Arguments.of(tablero, 2, 2, cartas[2][2])
+        );
+    }
+
+    @Disabled
     public void siLaCartaDesapareceSeCompletaConUnaNueva() {
         Carta[][] cartas = cartas();
         Heroe heroe = new Heroe();
