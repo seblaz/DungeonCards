@@ -42,13 +42,24 @@ public class Tablero {
     public void activar(Heroe heroe, Carta carta) {
         if (!carta.activar(heroe)) {
             int[] velocidad = this.velocidad(carta, heroe);
-            this.mover(heroe, velocidad);
+            try {
+                Carta opuesta = this.opuesta(heroe, velocidad);
+                this.mover(heroe, velocidad);
+                this.mover(opuesta, velocidad);
+            } catch (IndexOutOfBoundsException ignored) {
+                this.mover(heroe, velocidad);
+            }
         }
     }
 
-    private void mover(Heroe heroe, int[] velocidad) {
-        int[] indice = this.indice(heroe);
-        this.cartas[indice[0] + velocidad[0]][indice[1] + velocidad[1]] = heroe;
+    private Carta opuesta(Carta carta, int[] velocidad) {
+        int[] indice = this.indice(carta);
+        return this.cartas[indice[0] - velocidad[0]][indice[1] - velocidad[1]];
+    }
+
+    private void mover(Carta carta, int[] velocidad) {
+        int[] indice = this.indice(carta);
+        this.cartas[indice[0] + velocidad[0]][indice[1] + velocidad[1]] = carta;
     }
 
     private int[] velocidad(Carta una, Carta otra) {

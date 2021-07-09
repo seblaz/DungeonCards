@@ -119,7 +119,6 @@ public class TableroTest {
 
     @ParameterizedTest
     @MethodSource("cartasAMover")
-    @Disabled
     public void siLaCartaEsDestruidaOtraSeMueveUnEspacio(
             int[] posicionCartaADestruir,
             int[] posicionHeroe,
@@ -144,7 +143,11 @@ public class TableroTest {
         // Índices: (fila, columna)
         return Stream.of(
                 //            cartaADestruir           heroe      cartaAMover
-                Arguments.of(new int[]{0, 2}, new int[]{0, 1}, new int[]{0, 0})
+                Arguments.of(new int[]{0, 2}, new int[]{0, 1}, new int[]{0, 0}),
+                Arguments.of(new int[]{0, 0}, new int[]{0, 1}, new int[]{0, 2}),
+                Arguments.of(new int[]{0, 0}, new int[]{1, 0}, new int[]{2, 0}),
+                Arguments.of(new int[]{0, 1}, new int[]{1, 1}, new int[]{2, 1}),
+                Arguments.of(new int[]{2, 1}, new int[]{1, 1}, new int[]{0, 1})
         );
     }
 }
