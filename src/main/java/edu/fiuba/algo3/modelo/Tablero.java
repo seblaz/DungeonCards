@@ -41,9 +41,13 @@ public class Tablero {
 
     public void activar(Heroe heroe, Carta carta) {
         if (!carta.activar(heroe)) {
-            int[] indice = this.indice(carta);
-            this.cartas[indice[0]][indice[1]] = heroe;
+            this.reemplazar(carta, heroe);
         }
+    }
+
+    private void reemplazar(Carta carta, Carta otra) {
+        int[] indice = this.indice(carta);
+        this.cartas[indice[0]][indice[1]] = otra;
     }
 
     public Carta obtener(int fila, int columna) {
