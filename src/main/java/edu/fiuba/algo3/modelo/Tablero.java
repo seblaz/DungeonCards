@@ -39,7 +39,8 @@ public class Tablero {
         return new int[0];
     }
 
-    public void activar(Heroe heroe, Carta cartaADestruir) {
+    public void activar(Heroe heroe, Carta carta) {
+        this.cartas[0][2] = heroe;
     }
 
     public Carta obtener(int fila, int columna) {

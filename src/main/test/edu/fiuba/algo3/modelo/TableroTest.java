@@ -70,8 +70,8 @@ public class TableroTest {
         );
     }
 
-    @Disabled
-    public void siLaCartaDesapareceSeCompletaConUnaNueva() {
+    @Test
+    public void siLaCartaEsDestruidaSeOcupaSuPosicionConLaDelHeroe() {
         Carta[][] cartas = cartas();
         Heroe heroe = new Heroe();
         Carta cartaADestruir = mock(Carta.class);
