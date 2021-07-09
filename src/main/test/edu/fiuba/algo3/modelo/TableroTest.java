@@ -72,31 +72,31 @@ public class TableroTest {
 
     @ParameterizedTest
     @MethodSource("cartasADestruir")
-    public void siLaCartaEsDestruidaSeOcupaSuPosicionConLaDelHeroe(int columnaCarta, int filaCarta, int columnaHeroe, int filaHeroe) {
+    public void siLaCartaEsDestruidaSeOcupaSuPosicionConLaDelHeroe(Vector posicionCarta, Vector posicionHeroe) {
         Carta[][] cartas = cartas();
         Heroe heroe = new Heroe();
         Carta cartaADestruir = mock(Carta.class);
         when(cartaADestruir.activar(heroe)).thenReturn(false);
 
-        cartas[columnaCarta][filaCarta] = cartaADestruir;
-        cartas[columnaHeroe][filaHeroe] = heroe;
+        cartas[posicionCarta.y()][posicionCarta.x()] = cartaADestruir;
+        cartas[posicionHeroe.y()][posicionHeroe.x()] = heroe;
 
         Tablero tablero = new Tablero(cartas);
         tablero.activar(heroe, cartaADestruir);
 
-        assertEquals(heroe, tablero.obtener(new Vector(filaCarta, columnaCarta)));
+        assertEquals(heroe, tablero.obtener(posicionCarta));
     }
 
     public static Stream<Arguments> cartasADestruir() {
         // Índices: (fila, columna)
         return Stream.of(
                 //       posCarta, posHeroe
-                Arguments.of(0, 2, 0, 1),
-                Arguments.of(0, 1, 0, 2),
-                Arguments.of(0, 0, 0, 1),
-                Arguments.of(0, 1, 1, 1),
-                Arguments.of(2, 2, 1, 2),
-                Arguments.of(2, 2, 2, 1)
+                Arguments.of(new Vector(2, 0), new Vector(1, 0)),
+                Arguments.of(new Vector(1, 0), new Vector(2, 0)),
+                Arguments.of(new Vector(0, 0), new Vector(1, 0)),
+                Arguments.of(new Vector(1, 0), new Vector(1, 1)),
+                Arguments.of(new Vector(2, 2), new Vector(2, 1)),
+                Arguments.of(new Vector(2, 2), new Vector(1, 2))
         );
     }
 
