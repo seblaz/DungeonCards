@@ -78,7 +78,11 @@ public class Tablero {
     private void mover(Carta carta, Vector velocidad) {
         Vector posicionInicial = this.posicion(carta);
         Vector posicionFinal = posicionInicial.sumar(velocidad);
-        this.cartas[posicionFinal.y()][posicionFinal.x()] = carta;
+        this.asignar(carta, posicionFinal);
+    }
+
+    private void asignar(Carta carta, Vector posicion) {
+        this.cartas[posicion.y()][posicion.x()] = carta;
     }
 
     private Vector velocidad(Carta una, Carta otra) {
