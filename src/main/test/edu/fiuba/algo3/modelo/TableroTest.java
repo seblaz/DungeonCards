@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -62,27 +63,41 @@ public class TableroTest {
         Tablero tablero = new Tablero(cartas);
         // Índices: (fila, columna)
         return Stream.of(
-            Arguments.of(tablero, 0, 0, cartas[0][0]),
-            Arguments.of(tablero, 1, 0, cartas[1][0]),
-            Arguments.of(tablero, 0, 1, cartas[0][1]),
-            Arguments.of(tablero, 2, 1, cartas[2][1]),
-            Arguments.of(tablero, 2, 2, cartas[2][2])
+                Arguments.of(tablero, 0, 0, cartas[0][0]),
+                Arguments.of(tablero, 1, 0, cartas[1][0]),
+                Arguments.of(tablero, 0, 1, cartas[0][1]),
+                Arguments.of(tablero, 2, 1, cartas[2][1]),
+                Arguments.of(tablero, 2, 2, cartas[2][2])
         );
     }
 
-    @Test
-    public void siLaCartaEsDestruidaSeOcupaSuPosicionConLaDelHeroe() {
+    @ParameterizedTest
+    @MethodSource("cartasADestruir")
+    public void siLaCartaEsDestruidaSeOcupaSuPosicionConLaDelHeroe(int columnaCarta, int filaCarta, int columnaHeroe, int filaHeroe) {
         Carta[][] cartas = cartas();
         Heroe heroe = new Heroe();
         Carta cartaADestruir = mock(Carta.class);
         when(cartaADestruir.activar(heroe)).thenReturn(false);
 
-        cartas[0][2] = cartaADestruir;
-        cartas[0][1] = heroe;
+        cartas[columnaCarta][filaCarta] = cartaADestruir;
+        cartas[columnaHeroe][filaHeroe] = heroe;
 
         Tablero tablero = new Tablero(cartas);
         tablero.activar(heroe, cartaADestruir);
 
-        assertEquals(heroe, tablero.obtener(0, 2));
+        assertEquals(heroe, tablero.obtener(columnaCarta, filaCarta));
+    }
+
+    public static Stream<Arguments> cartasADestruir() {
+        // Índices: (fila, columna)
+        return Stream.of(
+                //       posCarta, posHeroe
+                Arguments.of(0, 2, 0, 1)
+//                Arguments.of(0, 1, 0, 2)
+//                Arguments.of(0, 0, 0, 1),
+//                Arguments.of(0, 1, 1, 1),
+//                Arguments.of(2, 2, 1, 2),
+//                Arguments.of(2, 2, 2, 1)
+        );
     }
 }
