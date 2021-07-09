@@ -10,10 +10,12 @@ public class Tablero {
 
         private final int horizontal;
         private final int vertical;
+        private final Vector direccion;
 
         Direccion(int horizontal, int vertical) {
             this.horizontal = horizontal;
             this.vertical = vertical;
+            this.direccion = new Vector(horizontal, vertical);
         }
     }
 
@@ -27,6 +29,17 @@ public class Tablero {
         int[] indice = this.indice(carta);
         return this.cartas[indice[0] + direccion.vertical][indice[1] + direccion.horizontal];
     }
+
+//    private Vector posicion(Carta carta) {
+//        for (int i = 0; i < this.cartas.length; i++) {
+//            for (int j = 0; j < this.cartas[i].length; j++) {
+//                if (this.cartas[i][j] == carta) {
+//                    return new Vector(i, j);
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
     private int[] indice(Carta carta) {
         for (int i = 0; i < this.cartas.length; i++) {

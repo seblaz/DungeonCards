@@ -53,4 +53,12 @@ public class VectorTest {
         Vector resultado = vector.restar(origen);
         assertEquals(vector, resultado);
     }
+
+    @Test
+    public void sumarAlOrigenDevuelveASiMismo() {
+        Vector vector = new Vector(1, 2);
+        Vector origen = new Vector(0, 0);
+        Vector resultado = vector.sumar(origen);
+        assertEquals(vector, resultado);
+    }
 }

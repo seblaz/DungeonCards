@@ -40,4 +40,8 @@ public class Vector {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    public Vector sumar(Vector origen) {
+        return this;
+    }
 }
