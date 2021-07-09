@@ -70,4 +70,12 @@ public class VectorTest {
         Vector esperado = new Vector(3, 4);
         assertEquals(esperado, resultado);
     }
+
+    @Test
+    public void multiplicarPorCeroDevuelveElOrigen() {
+        Vector vector = new Vector(1, 2);
+        Vector resultado = vector.multiplicar(0);
+        Vector esperado = new Vector(0, 0);
+        assertEquals(esperado, resultado);
+    }
 }

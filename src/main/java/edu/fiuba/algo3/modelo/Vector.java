@@ -44,4 +44,8 @@ public class Vector {
     public Vector sumar(Vector origen) {
         return new Vector(this.x + origen.x, this.y + origen.y);
     }
+
+    public Vector multiplicar(int factor) {
+        return new Vector(0, 0);
+    }
 }
