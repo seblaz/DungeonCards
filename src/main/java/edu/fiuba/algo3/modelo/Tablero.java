@@ -35,6 +35,10 @@ public class Tablero {
         return this.cartas[posicion.y()][posicion.x()];
     }
 
+    private void asignar(Carta carta, Vector posicion) {
+        this.cartas[posicion.y()][posicion.x()] = carta;
+    }
+
     private Vector posicion(Carta carta) {
         for (int i = 0; i < this.cartas.length; i++) {
             for (int j = 0; j < this.cartas[i].length; j++) {
@@ -44,17 +48,6 @@ public class Tablero {
             }
         }
         return null;
-    }
-
-    private int[] indice(Carta carta) {
-        for (int i = 0; i < this.cartas.length; i++) {
-            for (int j = 0; j < this.cartas[i].length; j++) {
-                if (this.cartas[i][j] == carta) {
-                    return new int[]{i, j};
-                }
-            }
-        }
-        return new int[0];
     }
 
     public void activar(Heroe heroe, Carta carta) {
@@ -79,10 +72,6 @@ public class Tablero {
         Vector posicionInicial = this.posicion(carta);
         Vector posicionFinal = posicionInicial.sumar(velocidad);
         this.asignar(carta, posicionFinal);
-    }
-
-    private void asignar(Carta carta, Vector posicion) {
-        this.cartas[posicion.y()][posicion.x()] = carta;
     }
 
     private Vector velocidad(Carta una, Carta otra) {
