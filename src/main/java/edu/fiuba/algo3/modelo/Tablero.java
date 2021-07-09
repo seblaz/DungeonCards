@@ -41,13 +41,20 @@ public class Tablero {
 
     public void activar(Heroe heroe, Carta carta) {
         if (!carta.activar(heroe)) {
-            this.reemplazar(carta, heroe);
+            int[] velocidad = this.velocidad(carta, heroe);
+            this.mover(heroe, velocidad);
         }
     }
 
-    private void reemplazar(Carta carta, Carta otra) {
-        int[] indice = this.indice(carta);
-        this.cartas[indice[0]][indice[1]] = otra;
+    private void mover(Heroe heroe, int[] velocidad) {
+        int[] indice = this.indice(heroe);
+        this.cartas[indice[0] + velocidad[0]][indice[1] + velocidad[1]] = heroe;
+    }
+
+    private int[] velocidad(Carta una, Carta otra) {
+        int[] unIndice = this.indice(una);
+        int[] otroIndice = this.indice(otra);
+        return new int[] { unIndice[0] - otroIndice[0], unIndice[1] - otroIndice[1]};
     }
 
     public Carta obtener(int fila, int columna) {

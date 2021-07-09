@@ -116,4 +116,35 @@ public class TableroTest {
 
         assertEquals(cartaAPermanecer, tablero.obtener(0, 0));
     }
+
+    @ParameterizedTest
+    @MethodSource("cartasAMover")
+    @Disabled
+    public void siLaCartaEsDestruidaOtraSeMueveUnEspacio(
+            int[] posicionCartaADestruir,
+            int[] posicionHeroe,
+            int[] posicionCartaAMover
+    ) {
+        Carta[][] cartas = cartas();
+        Heroe heroe = new Heroe();
+        Carta cartaADestruir = mock(Carta.class);
+        when(cartaADestruir.activar(heroe)).thenReturn(false);
+        Carta cartaAMover = cartas[posicionCartaAMover[0]][posicionCartaAMover[1]];
+
+        cartas[posicionCartaADestruir[0]][posicionCartaADestruir[1]] = cartaADestruir;
+        cartas[posicionHeroe[0]][posicionHeroe[1]] = heroe;
+
+        Tablero tablero = new Tablero(cartas);
+        tablero.activar(heroe, cartaADestruir);
+
+        assertEquals(cartaAMover, tablero.obtener(posicionHeroe[0], posicionHeroe[1]));
+    }
+
+    public static Stream<Arguments> cartasAMover() {
+        // Índices: (fila, columna)
+        return Stream.of(
+                //            cartaADestruir           heroe      cartaAMover
+                Arguments.of(new int[]{0, 2}, new int[]{0, 1}, new int[]{0, 0})
+        );
+    }
 }
