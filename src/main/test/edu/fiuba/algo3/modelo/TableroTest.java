@@ -88,9 +88,8 @@ public class TableroTest {
     }
 
     public static Stream<Arguments> cartasADestruir() {
-        // Índices: (fila, columna)
         return Stream.of(
-                //       posCarta, posHeroe
+                //                   cartaADestruir              heroe
                 Arguments.of(new Vector(2, 0), new Vector(1, 0)),
                 Arguments.of(new Vector(1, 0), new Vector(2, 0)),
                 Arguments.of(new Vector(0, 0), new Vector(1, 0)),
@@ -119,34 +118,33 @@ public class TableroTest {
     @ParameterizedTest
     @MethodSource("cartasAMover")
     public void siLaCartaEsDestruidaOtraSeMueveUnEspacio(
-            int[] posicionCartaADestruir,
-            int[] posicionHeroe,
-            int[] posicionCartaAMover
+            Vector posicionCartaADestruir,
+            Vector posicionHeroe,
+            Vector posicionCartaAMover
     ) {
         Carta[][] cartas = cartas();
         Heroe heroe = new Heroe();
         Carta cartaADestruir = mock(Carta.class);
         when(cartaADestruir.activar(heroe)).thenReturn(false);
-        Carta cartaAMover = cartas[posicionCartaAMover[0]][posicionCartaAMover[1]];
+        Carta cartaAMover = cartas[posicionCartaAMover.y()][posicionCartaAMover.x()];
 
-        cartas[posicionCartaADestruir[0]][posicionCartaADestruir[1]] = cartaADestruir;
-        cartas[posicionHeroe[0]][posicionHeroe[1]] = heroe;
+        cartas[posicionCartaADestruir.y()][posicionCartaADestruir.x()] = cartaADestruir;
+        cartas[posicionHeroe.y()][posicionHeroe.x()] = heroe;
 
         Tablero tablero = new Tablero(cartas);
         tablero.activar(heroe, cartaADestruir);
 
-        assertEquals(cartaAMover, tablero.obtener(new Vector(posicionHeroe[1], posicionHeroe[0])));
+        assertEquals(cartaAMover, tablero.obtener(posicionHeroe));
     }
 
     public static Stream<Arguments> cartasAMover() {
-        // Índices: (fila, columna)
         return Stream.of(
-                //            cartaADestruir           heroe      cartaAMover
-                Arguments.of(new int[]{0, 2}, new int[]{0, 1}, new int[]{0, 0}),
-                Arguments.of(new int[]{0, 0}, new int[]{0, 1}, new int[]{0, 2}),
-                Arguments.of(new int[]{0, 0}, new int[]{1, 0}, new int[]{2, 0}),
-                Arguments.of(new int[]{0, 1}, new int[]{1, 1}, new int[]{2, 1}),
-                Arguments.of(new int[]{2, 1}, new int[]{1, 1}, new int[]{0, 1})
+                //                  cartaADestruir                 heroe              cartaAMover
+                Arguments.of(new Vector(2, 0), new Vector(1, 0), new Vector(0, 0)),
+                Arguments.of(new Vector(0, 0), new Vector(1, 0), new Vector(2, 0)),
+                Arguments.of(new Vector(0, 0), new Vector(0, 1), new Vector(0, 2)),
+                Arguments.of(new Vector(1, 0), new Vector(1, 1), new Vector(1, 2)),
+                Arguments.of(new Vector(1, 2), new Vector(1, 1), new Vector(1, 0))
         );
     }
 }
