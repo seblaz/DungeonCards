@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HeroeTest {
 
@@ -81,4 +82,10 @@ public class HeroeTest {
         assertEquals(saludInicial, heroe.puntosDeSalud());
     }
 
+    @Test
+    public void alActivarloDevuelveVerdaderoPorqueNoFueDestruido() {
+        Heroe heroe = new Heroe();
+
+        assertTrue(heroe.activar(heroe));
+    }
 }

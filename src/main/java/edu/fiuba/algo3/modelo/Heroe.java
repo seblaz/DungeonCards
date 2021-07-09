@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Heroe implements Carta{
+public class Heroe {
     private final Salud salud;
 
     public Heroe() {
@@ -21,6 +21,7 @@ public class Heroe implements Carta{
         this.salud.disminuir(danio);
     }
 
-    public void activar(Heroe heroe) {
+    public boolean activar(Heroe heroe) {
+        return true;
     }
 }
