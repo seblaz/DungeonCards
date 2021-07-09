@@ -6,7 +6,9 @@ import edu.fiuba.algo3.modelo.Heroe;
 public class CartaEjemplo implements Carta {
 
     @Override
-    public void activar(Heroe heroe) {}
+    public boolean activar(Heroe heroe) {
+        return true;
+    }
 
     @Override
     public void recibirDanio(int danio) {}
