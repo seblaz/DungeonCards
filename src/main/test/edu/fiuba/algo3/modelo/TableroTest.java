@@ -53,6 +53,25 @@ public class TableroTest {
     }
 
     @ParameterizedTest
+    @MethodSource("cartasAdyacentesFueraDeLimite")
+    public void cartaAdyacenteEnElLimiteElevaExcepcion(Tablero tablero, Carta carta, Tablero.Direccion direccion) {
+        assertThrows(PosicionFueraDeLimites.class, () -> {
+            tablero.obtenerAdyacente(carta, direccion);
+        });
+    }
+
+    public static Stream<Arguments> cartasAdyacentesFueraDeLimite() {
+        Carta[][] cartas = cartas();
+        Tablero tablero = TableroEjemplo.crear().conCartas(cartas).build();
+        return Stream.of(
+                Arguments.of(tablero, cartas[0][0], Tablero.Direccion.IZQUIERDA),
+                Arguments.of(tablero, cartas[0][0], Tablero.Direccion.ARRIBA),
+                Arguments.of(tablero, cartas[0][2], Tablero.Direccion.DERECHA),
+                Arguments.of(tablero, cartas[2][1], Tablero.Direccion.ABAJO)
+        );
+    }
+
+    @ParameterizedTest
     @MethodSource("cartasPorPosicion")
     public void obtieneLasCartasDelTablero(
             Tablero tablero,

@@ -15,7 +15,7 @@ public class Tablero {
         }
     }
 
-    private GeneradorDeCartas generadorDeCartas;
+    private final GeneradorDeCartas generadorDeCartas;
     private final Carta[][] cartas;
 
     public Tablero(GeneradorDeCartas generadorDeCartas, Carta[][] cartas) {
@@ -49,7 +49,7 @@ public class Tablero {
                 }
             }
         }
-        return null;
+        throw new CartaNoEncontrada();
     }
 
     public Carta obtenerAdyacente(Carta carta, Direccion direccion) {
