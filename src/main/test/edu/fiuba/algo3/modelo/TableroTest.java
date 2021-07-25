@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.ejemplos.CartaEjemplo;
+import edu.fiuba.algo3.modelo.ejemplos.TableroEjemplo;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -33,7 +34,7 @@ public class TableroTest {
 
     public static Stream<Arguments> cartasAdyacentes() {
         Carta[][] cartas = cartas();
-        Tablero tablero = new Tablero(cartas);
+        Tablero tablero = TableroEjemplo.crear().conCartas(cartas).build();
         // Índices: (fila, columna)
         return Stream.of(
                 Arguments.of(tablero, cartas[0][0], Tablero.Direccion.DERECHA, cartas[0][1]),
@@ -65,7 +66,7 @@ public class TableroTest {
 
     public static Stream<Arguments> cartasPorPosicion() {
         Carta[][] cartas = cartas();
-        Tablero tablero = new Tablero(cartas);
+        Tablero tablero = TableroEjemplo.crear().conCartas(cartas).build();
         return Stream.of(
                 Arguments.of(tablero, new Vector(0, 0), cartas[0][0]),
                 Arguments.of(tablero,  new Vector(0, 1), cartas[1][0]),
@@ -89,7 +90,7 @@ public class TableroTest {
         cartas[posicionCarta.y()][posicionCarta.x()] = cartaADestruir;
         cartas[posicionHeroe.y()][posicionHeroe.x()] = heroe;
 
-        Tablero tablero = new Tablero(cartas);
+        Tablero tablero = TableroEjemplo.crear().conCartas(cartas).build();
         tablero.activar(heroe, cartaADestruir);
 
         assertEquals(heroe, tablero.obtener(posicionCarta));
@@ -117,7 +118,7 @@ public class TableroTest {
         cartas[0][0] = cartaAPermanecer;
         cartas[0][1] = heroe;
 
-        Tablero tablero = new Tablero(cartas);
+        Tablero tablero = TableroEjemplo.crear().conCartas(cartas).build();
         tablero.activar(heroe, cartaAPermanecer);
 
         assertEquals(cartaAPermanecer, tablero.obtener(new Vector(0, 0)));
@@ -139,7 +140,7 @@ public class TableroTest {
         cartas[posicionCartaADestruir.y()][posicionCartaADestruir.x()] = cartaADestruir;
         cartas[posicionHeroe.y()][posicionHeroe.x()] = heroe;
 
-        Tablero tablero = new Tablero(cartas);
+        Tablero tablero = TableroEjemplo.crear().conCartas(cartas).build();
         tablero.activar(heroe, cartaADestruir);
 
         assertEquals(cartaAMover, tablero.obtener(posicionHeroe));
@@ -172,7 +173,7 @@ public class TableroTest {
         cartas[posicionCartaADestruir.y()][posicionCartaADestruir.x()] = cartaADestruir;
         cartas[posicionHeroe.y()][posicionHeroe.x()] = heroe;
 
-        Tablero tablero = new Tablero(cartas);
+        Tablero tablero = TableroEjemplo.crear().conCartas(cartas).build();
         tablero.activar(heroe, cartaADestruir);
 
         Carta nueva = tablero.obtener(posicionNueva);

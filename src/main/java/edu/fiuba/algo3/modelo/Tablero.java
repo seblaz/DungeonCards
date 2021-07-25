@@ -15,9 +15,11 @@ public class Tablero {
         }
     }
 
+    private GeneradorDeCartas generadorDeCartas;
     private final Carta[][] cartas;
 
-    public Tablero(Carta[][] cartas) {
+    public Tablero(GeneradorDeCartas generadorDeCartas, Carta[][] cartas) {
+        this.generadorDeCartas = generadorDeCartas;
         this.cartas = cartas.clone();
     }
 
