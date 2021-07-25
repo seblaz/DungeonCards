@@ -28,11 +28,12 @@ public class Tablero {
         return this.cartas[posicion.y()][posicion.x()];
     }
 
+    private boolean dentroDeLimites(Vector posicion) {
+        return posicion.x() >= 0 && posicion.x() <= 2 && posicion.y() >= 0 && posicion.y() <= 2;
+    }
+
     private void validarLimites(Vector posicion) {
-        if(posicion.x() < 0 || posicion.x() > 2) {
-            throw new PosicionFueraDeLimites();
-        }
-        if(posicion.y() < 0 || posicion.y() > 2) {
+        if(!this.dentroDeLimites(posicion)) {
             throw new PosicionFueraDeLimites();
         }
     }
@@ -62,13 +63,14 @@ public class Tablero {
         if (!carta.activar(heroe)) {
             Vector direccionDeAtaque = this.velocidad(carta, heroe);
             Carta nuevaCarta = this.generadorDeCartas.nueva();
-            try {
-                Carta opuesta = this.opuesta(heroe, direccionDeAtaque);
-                Vector posicionOpuesta = this.posicion(opuesta);
+
+            Vector posicionOpuesta = this.posicionOpuesta(heroe, direccionDeAtaque);
+            if(this.dentroDeLimites(posicionOpuesta)) {
+                Carta opuesta = this.obtener(posicionOpuesta);
                 this.mover(heroe, direccionDeAtaque);
                 this.mover(opuesta, direccionDeAtaque);
                 this.asignar(nuevaCarta, posicionOpuesta);
-            } catch (PosicionFueraDeLimites ignored) {
+            } else  {
                 Vector posicionHeroe = this.posicion(heroe);
                 this.mover(heroe, direccionDeAtaque);
                 this.asignar(nuevaCarta, posicionHeroe);
@@ -76,9 +78,9 @@ public class Tablero {
         }
     }
 
-    private Carta opuesta(Carta carta, Vector velocidad) {
+    private Vector posicionOpuesta(Carta carta, Vector direccion) {
         Vector posicion = this.posicion(carta);
-        return this.obtener(posicion.sumar(velocidad.multiplicar(-1)));
+        return posicion.sumar(direccion.multiplicar(-1));
     }
 
     private void mover(Carta carta, Vector velocidad) {
