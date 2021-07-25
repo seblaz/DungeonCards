@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.ejemplos.CartaEjemplo;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -53,7 +55,11 @@ public class TableroTest {
 
     @ParameterizedTest
     @MethodSource("cartasPorPosicion")
-    public void obtieneLasCartasDelTablero(Tablero tablero, Vector posicion, Carta esperado) {
+    public void obtieneLasCartasDelTablero(
+            Tablero tablero,
+            Vector posicion,
+            Carta esperado
+    ) {
         assertEquals(esperado, tablero.obtener(posicion));
     }
 
@@ -71,7 +77,10 @@ public class TableroTest {
 
     @ParameterizedTest
     @MethodSource("cartasADestruir")
-    public void siLaCartaEsDestruidaSeOcupaSuPosicionConLaDelHeroe(Vector posicionCarta, Vector posicionHeroe) {
+    public void siLaCartaEsDestruidaSeOcupaSuPosicionConLaDelHeroe(
+            Vector posicionCarta,
+            Vector posicionHeroe
+    ) {
         Carta[][] cartas = cartas();
         Heroe heroe = new Heroe();
         Carta cartaADestruir = mock(Carta.class);
@@ -144,6 +153,42 @@ public class TableroTest {
                 Arguments.of(new Vector(0, 0), new Vector(0, 1), new Vector(0, 2)),
                 Arguments.of(new Vector(1, 0), new Vector(1, 1), new Vector(1, 2)),
                 Arguments.of(new Vector(1, 2), new Vector(1, 1), new Vector(1, 0))
+        );
+    }
+
+    @ParameterizedTest
+    @Disabled
+    @MethodSource("cartasNuevas")
+    public void siLaCartaEsDestruidaApareceUnaNueva(
+            Vector posicionCartaADestruir,
+            Vector posicionHeroe,
+            Vector posicionNueva
+    ) {
+        Carta[][] cartas = cartas();
+        Heroe heroe = new Heroe();
+        Carta cartaADestruir = mock(Carta.class);
+        when(cartaADestruir.activar(heroe)).thenReturn(false);
+
+        cartas[posicionCartaADestruir.y()][posicionCartaADestruir.x()] = cartaADestruir;
+        cartas[posicionHeroe.y()][posicionHeroe.x()] = heroe;
+
+        Tablero tablero = new Tablero(cartas);
+        tablero.activar(heroe, cartaADestruir);
+
+        Carta nueva = tablero.obtener(posicionNueva);
+
+        assertNotNull(nueva);
+    }
+
+    public static Stream<Arguments> cartasNuevas() {
+        return Stream.of(
+                //                  cartaADestruir                 heroe              cartaNueva
+                Arguments.of(new Vector(2, 0), new Vector(1, 0), new Vector(0, 0)),
+                Arguments.of(new Vector(0, 0), new Vector(1, 0), new Vector(2, 0)),
+                Arguments.of(new Vector(0, 0), new Vector(0, 1), new Vector(0, 2)),
+                Arguments.of(new Vector(1, 0), new Vector(1, 1), new Vector(1, 2)),
+                Arguments.of(new Vector(1, 2), new Vector(1, 1), new Vector(1, 0)),
+                Arguments.of(new Vector(1, 0), new Vector(0, 0), new Vector(0, 0))
         );
     }
 }

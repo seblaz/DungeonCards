@@ -47,7 +47,7 @@ public class VectorTest {
     }
 
     @Test
-    public void otraPosicionMenosElOrigenDevuelveLAPosicion() {
+    public void otraPosicionMenosElOrigenDevuelveLaPosicion() {
         Vector vector = new Vector(1, 2);
         Vector origen = new Vector(0, 0);
         Vector resultado = vector.restar(origen);
