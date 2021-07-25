@@ -33,7 +33,7 @@ public class Tablero {
     }
 
     private void validarLimites(Vector posicion) {
-        if(!this.dentroDeLimites(posicion)) {
+        if (!this.dentroDeLimites(posicion)) {
             throw new PosicionFueraDeLimites();
         }
     }
@@ -61,21 +61,33 @@ public class Tablero {
 
     public void activar(Heroe heroe, Carta carta) {
         if (!carta.activar(heroe)) {
-            Vector direccionDeAtaque = this.velocidad(carta, heroe);
-            Carta nuevaCarta = this.generadorDeCartas.nueva();
-
-            Vector posicionOpuesta = this.posicionOpuesta(heroe, direccionDeAtaque);
-            if(this.dentroDeLimites(posicionOpuesta)) {
-                Carta opuesta = this.obtener(posicionOpuesta);
-                this.mover(heroe, direccionDeAtaque);
-                this.mover(opuesta, direccionDeAtaque);
-                this.asignar(nuevaCarta, posicionOpuesta);
-            } else  {
-                Vector posicionHeroe = this.posicion(heroe);
-                this.mover(heroe, direccionDeAtaque);
-                this.asignar(nuevaCarta, posicionHeroe);
-            }
+            this.reemplazarCartaDestruida(heroe, carta);
         }
+    }
+
+    private void reemplazarCartaDestruida(Heroe heroe, Carta carta) {
+        Vector direccionDeAtaque = this.velocidad(carta, heroe);
+        Carta nuevaCarta = this.generadorDeCartas.nueva();
+        Vector posicionOpuesta = this.posicionOpuesta(heroe, direccionDeAtaque);
+
+        if (this.dentroDeLimites(posicionOpuesta)) {
+            this.moverHeroeDentroDeLimite(heroe, nuevaCarta, direccionDeAtaque, posicionOpuesta);
+        } else {
+            this.moverHeroeFueraDeLimite(heroe, nuevaCarta, direccionDeAtaque);
+        }
+    }
+
+    private void moverHeroeDentroDeLimite(Heroe heroe, Carta nuevaCarta, Vector direccionDeAtaque, Vector posicionOpuesta) {
+        Carta opuesta = this.obtener(posicionOpuesta);
+        this.mover(heroe, direccionDeAtaque);
+        this.mover(opuesta, direccionDeAtaque);
+        this.asignar(nuevaCarta, posicionOpuesta);
+    }
+
+    private void moverHeroeFueraDeLimite(Heroe heroe, Carta nuevaCarta, Vector direccionDeAtaque) {
+        Vector posicionHeroe = this.posicion(heroe);
+        this.mover(heroe, direccionDeAtaque);
+        this.asignar(nuevaCarta, posicionHeroe);
     }
 
     private Vector posicionOpuesta(Carta carta, Vector direccion) {
