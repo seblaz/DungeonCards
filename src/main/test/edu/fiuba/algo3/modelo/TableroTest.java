@@ -158,7 +158,6 @@ public class TableroTest {
     }
 
     @ParameterizedTest
-    @Disabled
     @MethodSource("cartasNuevas")
     public void siLaCartaEsDestruidaApareceUnaNueva(
             Vector posicionCartaADestruir,
@@ -173,23 +172,29 @@ public class TableroTest {
         cartas[posicionCartaADestruir.y()][posicionCartaADestruir.x()] = cartaADestruir;
         cartas[posicionHeroe.y()][posicionHeroe.x()] = heroe;
 
-        Tablero tablero = TableroEjemplo.crear().conCartas(cartas).build();
+        GeneradorDeCartas generadorDeCartas = mock(GeneradorDeCartas.class);
+        Carta nuevaCartaEsperada = new CartaEjemplo();
+        when(generadorDeCartas.nueva()).thenReturn(nuevaCartaEsperada);
+
+        Tablero tablero = TableroEjemplo.crear()
+                .conCartas(cartas)
+                .conGeneradorDeCartas(generadorDeCartas)
+                .build();
+
         tablero.activar(heroe, cartaADestruir);
 
-        Carta nueva = tablero.obtener(posicionNueva);
-
-        assertNotNull(nueva);
+        assertEquals(nuevaCartaEsperada, tablero.obtener(posicionNueva));
     }
 
     public static Stream<Arguments> cartasNuevas() {
         return Stream.of(
                 //                  cartaADestruir                 heroe              cartaNueva
-                Arguments.of(new Vector(2, 0), new Vector(1, 0), new Vector(0, 0)),
-                Arguments.of(new Vector(0, 0), new Vector(1, 0), new Vector(2, 0)),
-                Arguments.of(new Vector(0, 0), new Vector(0, 1), new Vector(0, 2)),
-                Arguments.of(new Vector(1, 0), new Vector(1, 1), new Vector(1, 2)),
-                Arguments.of(new Vector(1, 2), new Vector(1, 1), new Vector(1, 0)),
-                Arguments.of(new Vector(1, 0), new Vector(0, 0), new Vector(0, 0))
+                Arguments.of(new Vector(2, 0), new Vector(1, 0), new Vector(0, 0))
+//                Arguments.of(new Vector(0, 0), new Vector(1, 0), new Vector(2, 0)),
+//                Arguments.of(new Vector(0, 0), new Vector(0, 1), new Vector(0, 2)),
+//                Arguments.of(new Vector(1, 0), new Vector(1, 1), new Vector(1, 2)),
+//                Arguments.of(new Vector(1, 2), new Vector(1, 1), new Vector(1, 0)),
+//                Arguments.of(new Vector(1, 0), new Vector(0, 0), new Vector(0, 0))
         );
     }
 }
