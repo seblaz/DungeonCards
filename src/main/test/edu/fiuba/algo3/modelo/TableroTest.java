@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.ejemplos.CartaEjemplo;
 import edu.fiuba.algo3.modelo.ejemplos.TableroEjemplo;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -10,8 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -197,4 +195,35 @@ public class TableroTest {
                 Arguments.of(new Vector(1, 0), new Vector(0, 0), new Vector(0, 0))
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("posicionesFueraDeTablero")
+    public void alPedirUnaCartaEnUnaPosicionFueraDelTableroElevaUnaExcepcion(Vector posicion) {
+        Tablero tablero = TableroEjemplo.crear().build();
+        assertThrows(PosicionFueraDeLimites.class, () -> {
+            tablero.obtener(posicion);
+        });
+    }
+
+    public static Stream<Arguments> posicionesFueraDeTablero() {
+        return Stream.of(
+                Arguments.of(new Vector(-1, -1)),
+                Arguments.of(new Vector(-1, 0)),
+                Arguments.of(new Vector(-1, 1)),
+                Arguments.of(new Vector(-1, 2)),
+                Arguments.of(new Vector(-1, 3)),
+                Arguments.of(new Vector(0, -1)),
+                Arguments.of(new Vector(1, -1)),
+                Arguments.of(new Vector(2, -1)),
+                Arguments.of(new Vector(3, -1)),
+                Arguments.of(new Vector(0, 3)),
+                Arguments.of(new Vector(1, 3)),
+                Arguments.of(new Vector(2, 3)),
+                Arguments.of(new Vector(3, 3)),
+                Arguments.of(new Vector(3, 2)),
+                Arguments.of(new Vector(3, 1)),
+                Arguments.of(new Vector(3, 0))
+        );
+    }
 }
+

@@ -14,7 +14,16 @@ public class TableroEjemplo {
     }
 
     private TableroEjemplo() {
+        this.cartas = this.cartas();
         this.generadorDeCartas = new GeneradorDeCartas(new GeneradorRandom(), 10);
+    }
+
+    private Carta[][] cartas() {
+        return new Carta[][]{
+                {new CartaEjemplo(), new CartaEjemplo(), new CartaEjemplo()},
+                {new CartaEjemplo(), new CartaEjemplo(), new CartaEjemplo()},
+                {new CartaEjemplo(), new CartaEjemplo(), new CartaEjemplo()},
+        };
     }
 
     public TableroEjemplo conCartas(Carta[][] cartas) {

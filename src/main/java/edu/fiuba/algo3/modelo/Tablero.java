@@ -24,7 +24,17 @@ public class Tablero {
     }
 
     public Carta obtener(Vector posicion) {
+        this.validarLimites(posicion);
         return this.cartas[posicion.y()][posicion.x()];
+    }
+
+    private void validarLimites(Vector posicion) {
+        if(posicion.x() < 0 || posicion.x() > 2) {
+            throw new PosicionFueraDeLimites();
+        }
+        if(posicion.y() < 0 || posicion.y() > 2) {
+            throw new PosicionFueraDeLimites();
+        }
     }
 
     private void asignar(Carta carta, Vector posicion) {
@@ -58,7 +68,7 @@ public class Tablero {
                 this.mover(heroe, direccionDeAtaque);
                 this.mover(opuesta, direccionDeAtaque);
                 this.asignar(nuevaCarta, posicionOpuesta);
-            } catch (IndexOutOfBoundsException ignored) {
+            } catch (PosicionFueraDeLimites ignored) {
                 Vector posicionHeroe = this.posicion(heroe);
                 this.mover(heroe, direccionDeAtaque);
                 this.asignar(nuevaCarta, posicionHeroe);
