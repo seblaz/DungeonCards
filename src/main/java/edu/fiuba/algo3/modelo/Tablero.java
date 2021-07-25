@@ -51,15 +51,17 @@ public class Tablero {
     public void activar(Heroe heroe, Carta carta) {
         if (!carta.activar(heroe)) {
             Vector direccionDeAtaque = this.velocidad(carta, heroe);
-            Carta nueva = this.generadorDeCartas.nueva();
+            Carta nuevaCarta = this.generadorDeCartas.nueva();
             try {
                 Carta opuesta = this.opuesta(heroe, direccionDeAtaque);
                 Vector posicionOpuesta = this.posicion(opuesta);
                 this.mover(heroe, direccionDeAtaque);
                 this.mover(opuesta, direccionDeAtaque);
-                this.asignar(nueva, posicionOpuesta);
+                this.asignar(nuevaCarta, posicionOpuesta);
             } catch (IndexOutOfBoundsException ignored) {
+                Vector posicionHeroe = this.posicion(heroe);
                 this.mover(heroe, direccionDeAtaque);
+                this.asignar(nuevaCarta, posicionHeroe);
             }
         }
     }

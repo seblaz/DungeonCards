@@ -189,12 +189,12 @@ public class TableroTest {
     public static Stream<Arguments> cartasNuevas() {
         return Stream.of(
                 //                  cartaADestruir                 heroe              cartaNueva
-                Arguments.of(new Vector(2, 0), new Vector(1, 0), new Vector(0, 0))
-//                Arguments.of(new Vector(0, 0), new Vector(1, 0), new Vector(2, 0)),
-//                Arguments.of(new Vector(0, 0), new Vector(0, 1), new Vector(0, 2)),
-//                Arguments.of(new Vector(1, 0), new Vector(1, 1), new Vector(1, 2)),
-//                Arguments.of(new Vector(1, 2), new Vector(1, 1), new Vector(1, 0)),
-//                Arguments.of(new Vector(1, 0), new Vector(0, 0), new Vector(0, 0))
+                Arguments.of(new Vector(2, 0), new Vector(1, 0), new Vector(0, 0)),
+                Arguments.of(new Vector(0, 0), new Vector(1, 0), new Vector(2, 0)),
+                Arguments.of(new Vector(0, 0), new Vector(0, 1), new Vector(0, 2)),
+                Arguments.of(new Vector(1, 0), new Vector(1, 1), new Vector(1, 2)),
+                Arguments.of(new Vector(1, 2), new Vector(1, 1), new Vector(1, 0)),
+                Arguments.of(new Vector(1, 0), new Vector(0, 0), new Vector(0, 0))
         );
     }
 }
