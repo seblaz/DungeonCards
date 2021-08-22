@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 
+import java.util.Arrays;
+
 public class Tablero {
     public enum Direccion {
         DERECHA(1, 0),
@@ -15,12 +17,21 @@ public class Tablero {
         }
     }
 
+    private static final int DIMENSION = 3;
+
     private final GeneradorDeCartas generadorDeCartas;
     private final Carta[][] cartas;
 
     public Tablero(GeneradorDeCartas generadorDeCartas, Carta[][] cartas) {
+        validarCartas(cartas);
         this.generadorDeCartas = generadorDeCartas;
         this.cartas = cartas.clone();
+    }
+
+    private void validarCartas(Carta[][] cartas) {
+        if (cartas.length != DIMENSION || Arrays.stream(cartas).anyMatch(fila -> fila.length != DIMENSION)) {
+            throw new CartasInvalidas();
+        }
     }
 
     public Carta obtener(Vector posicion) {

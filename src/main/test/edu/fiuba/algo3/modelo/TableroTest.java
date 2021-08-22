@@ -244,5 +244,21 @@ public class TableroTest {
                 Arguments.of(new Vector(3, 0))
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("cartasInvalidas")
+    public void elevaUnaExcepcionSiNoRecibe9Cartas(Carta[][] cartas) {
+        assertThrows(CartasInvalidas.class, () -> {
+            TableroEjemplo.crear().conCartas(cartas).build();
+        });
+    }
+
+    public static Stream<Arguments> cartasInvalidas() {
+        return Stream.of(
+                Arguments.of((Object) new Carta[][]{}),
+                Arguments.of((Object) new Carta[][]{{new CartaEjemplo()}, {new CartaEjemplo()}, {new CartaEjemplo()}}),
+                Arguments.of((Object) new Carta[][]{{new CartaEjemplo(), new CartaEjemplo(), new CartaEjemplo()}, {new CartaEjemplo()}, {new CartaEjemplo()}})
+        );
+    }
 }
 

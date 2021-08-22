@@ -11,14 +11,21 @@
         <junit.jupiter.version>5.4.0</junit.jupiter.version>
         <mockito-mockito-core-version>3.3.0</mockito-mockito-core-version>
         <maven-surefire-version>3.0.0-M3</maven-surefire-version>
-        <javafx-version>15.0.1</javafx-version>
-        <main-class>edu.fiuba.algo3.Main</main-class>
+        <javafx-controls-version>16</javafx-controls-version>
+        <javafx-graphics-version>16</javafx-graphics-version>
+        <fxml-version>11.0.1</fxml-version>
+        <main-class>juego/edu.fiuba.algo3.Main</main-class>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>${javafx-version}</version>
+            <version>${javafx-controls-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${fxml-version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -40,19 +47,19 @@
                 <dependency>
                     <groupId>org.openjfx</groupId>
                     <artifactId>javafx-graphics</artifactId>
-                    <version>${javafx-version}</version>
+                    <version>${javafx-graphics-version}</version>
                     <classifier>linux</classifier>
                 </dependency>
                 <dependency>
                     <groupId>org.openjfx</groupId>
                     <artifactId>javafx-graphics</artifactId>
-                    <version>${javafx-version}</version>
+                    <version>${javafx-graphics-version}</version>
                     <classifier>mac</classifier>
                 </dependency>
                 <dependency>
                     <groupId>org.openjfx</groupId>
                     <artifactId>javafx-graphics</artifactId>
-                    <version>${javafx-version}</version>
+                    <version>${javafx-graphics-version}</version>
                     <classifier>win</classifier>
                 </dependency>
             </dependencies>
