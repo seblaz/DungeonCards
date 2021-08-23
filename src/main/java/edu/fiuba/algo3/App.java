@@ -21,7 +21,7 @@ public class App extends Application {
         DungeonCards juego = new DungeonCards(new GeneradorRandom());
         VistaTablero vistaTablero = new VistaTablero(juego.tablero());
 
-        var scene = new Scene(vistaTablero, 640, 480);
+        var scene = new Scene(vistaTablero);
         stage.setScene(scene);
         stage.show();
     }
