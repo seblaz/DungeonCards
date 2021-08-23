@@ -5,13 +5,11 @@ import edu.fiuba.algo3.modelo.Observador;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-
 public class VistaEnemigo extends HBox implements Observador {
     private final HBox root;
     private final Enemigo enemigo;
 
-    public VistaEnemigo(Enemigo enemigo) throws IOException {
+    public VistaEnemigo(Enemigo enemigo) {
         super();
         this.enemigo = enemigo;
         enemigo.agregarObservador(this);

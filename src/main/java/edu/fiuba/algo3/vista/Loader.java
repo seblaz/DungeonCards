@@ -13,8 +13,12 @@ public class Loader extends FXMLLoader {
         this.setLocation(location);
     }
 
-    public static <T> T load(String filename) throws IOException {
-        return new Loader(filename).load();
+    public static <T> T load(String filename) {
+        try {
+            return new Loader(filename).load();
+        } catch (IOException e) {
+            throw ((RuntimeException) new FXMLException().initCause(e));
+        }
     }
 
 }

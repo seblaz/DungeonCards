@@ -6,6 +6,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class HeroeTest {
 
@@ -88,4 +90,14 @@ public class HeroeTest {
 
         assertTrue(heroe.activar(heroe));
     }
-}
+
+    @Test
+    public void informaSiEsAtacado() {
+        Heroe heroe = new Heroe();
+        Observador observador = mock(Observador.class);
+
+        heroe.agregarObservador(observador);
+        heroe.atacar(new Enemigo(1));
+
+        verify(observador).actualizar();
+    }}

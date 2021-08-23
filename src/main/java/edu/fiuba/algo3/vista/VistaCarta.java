@@ -8,11 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-import java.io.IOException;
 import java.util.Map;
 
 public class VistaCarta extends HBox {
-    public VistaCarta(Carta carta, ControladorCarta controlador) throws IOException {
+    public VistaCarta(Carta carta, ControladorCarta controlador) {
         super();
         Map<Class, VistaFactory<Carta, Parent>> vistas = Map.of(
                 Heroe.class, (Carta heroe) -> new VistaHeroe((Heroe) heroe),

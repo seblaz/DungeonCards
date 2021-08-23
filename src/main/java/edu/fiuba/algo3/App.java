@@ -1,15 +1,11 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.modelo.DungeonCards;
-import edu.fiuba.algo3.modelo.Enemigo;
 import edu.fiuba.algo3.modelo.GeneradorRandom;
-import edu.fiuba.algo3.vista.VistaEnemigo;
 import edu.fiuba.algo3.vista.VistaTablero;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * JavaFX App
@@ -17,7 +13,7 @@ import java.io.IOException;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         DungeonCards juego = new DungeonCards(new GeneradorRandom());
         VistaTablero vistaTablero = new VistaTablero(juego.tablero(), juego.heroe());
 

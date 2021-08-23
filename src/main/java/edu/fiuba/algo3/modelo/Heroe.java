@@ -15,6 +15,7 @@ public class Heroe extends Observable implements Carta {
         int danio = enemigo.puntosDeDanio();
         enemigo.recibirDanio(this.salud.puntos());
         this.recibirDanio(danio);
+        this.notificar();
     }
 
     public void recibirDanio(int danio) {

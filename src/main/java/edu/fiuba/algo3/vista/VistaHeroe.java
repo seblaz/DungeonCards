@@ -6,13 +6,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-
 public class VistaHeroe extends HBox implements Observador {
     private final Pane root;
     private final Heroe heroe;
 
-    public VistaHeroe(Heroe heroe) throws IOException {
+    public VistaHeroe(Heroe heroe) {
         super();
         this.heroe = heroe;
         heroe.agregarObservador(this);
