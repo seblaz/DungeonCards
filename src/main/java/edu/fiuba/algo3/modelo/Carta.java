@@ -9,4 +9,6 @@ public interface Carta {
     boolean activar(Heroe heroe);
 
     void recibirDanio(int danio);
+
+    boolean activa();
 }

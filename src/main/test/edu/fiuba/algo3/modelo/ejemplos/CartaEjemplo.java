@@ -12,4 +12,9 @@ public class CartaEjemplo implements Carta {
 
     @Override
     public void recibirDanio(int danio) {}
+
+    @Override
+    public boolean activa() {
+        return true;
+    }
 }

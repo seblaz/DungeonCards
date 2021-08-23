@@ -57,7 +57,7 @@ public class Tablero extends Observable {
         this.cartas[posicion.y()][posicion.x()] = carta;
     }
 
-    private Vector posicion(Carta carta) {
+    public Vector posicion(Carta carta) {
         for (int i = 0; i < this.cartas.length; i++) {
             for (int j = 0; j < this.cartas[i].length; j++) {
                 if (this.cartas[i][j] == carta) {

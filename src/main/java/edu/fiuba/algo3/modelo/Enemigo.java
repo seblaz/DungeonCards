@@ -19,8 +19,14 @@ public class Enemigo extends Observable implements Carta {
         this.salud.disminuir(danio);
     }
 
+    @Override
+    public boolean activa() {
+        return this.salud.vivo();
+    }
+
     public boolean activar(Heroe heroe) {
         heroe.atacar(this);
+        this.notificar();
         return this.salud.vivo();
     }
 }

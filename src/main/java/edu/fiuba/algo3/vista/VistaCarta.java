@@ -10,8 +10,11 @@ import javafx.scene.layout.HBox;
 import java.util.Map;
 
 public class VistaCarta extends HBox {
+    private final Carta carta;
+
     public VistaCarta(Carta carta, ControladorCarta controlador) {
         super();
+        this.carta = carta;
         Map<Class, VistaFactory<Carta, Parent>> vistas = Map.of(
                 Heroe.class, (Carta heroe) -> new VistaHeroe((Heroe) heroe),
                 Enemigo.class, (Carta heroe) -> new VistaEnemigo((Enemigo) heroe)
@@ -21,5 +24,9 @@ public class VistaCarta extends HBox {
 
         vista.setOnMouseClicked(controlador);
         getChildren().add(vista);
+    }
+
+    public Carta carta() {
+        return carta;
     }
 }
