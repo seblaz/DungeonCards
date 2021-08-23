@@ -3,8 +3,10 @@ package edu.fiuba.algo3.controlador;
 import edu.fiuba.algo3.modelo.Carta;
 import edu.fiuba.algo3.modelo.Heroe;
 import edu.fiuba.algo3.modelo.Tablero;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
-public class ControladorCarta {
+public class ControladorCarta implements EventHandler<MouseEvent> {
     private final Carta carta;
     private final Tablero tablero;
     private final Heroe heroe;
@@ -15,7 +17,8 @@ public class ControladorCarta {
         this.heroe = heroe;
     }
 
-    public void activar() {
+    @Override
+    public void handle(MouseEvent mouseEvent) {
         tablero.activar(heroe, carta);
     }
 }

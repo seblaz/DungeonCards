@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Carta;
 import edu.fiuba.algo3.modelo.Enemigo;
 import edu.fiuba.algo3.modelo.Heroe;
 import javafx.scene.Parent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 import java.util.Map;
@@ -20,9 +19,7 @@ public class VistaCarta extends HBox {
 
         Parent vista = vistas.get(carta.getClass()).vista(carta);
 
-        vista.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            controlador.activar();
-        });
+        vista.setOnMouseClicked(controlador);
         getChildren().add(vista);
     }
 }
