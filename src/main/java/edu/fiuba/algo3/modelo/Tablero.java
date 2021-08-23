@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.Arrays;
 
-public class Tablero {
+public class Tablero extends Observable {
     public enum Direccion {
         DERECHA(1, 0),
         IZQUIERDA(-1, 0),
@@ -77,6 +77,7 @@ public class Tablero {
     public void activar(Heroe heroe, Carta carta) {
         if (!carta.activar(heroe)) {
             this.reemplazarCartaDestruida(heroe, carta);
+            this.notificar();
         }
     }
 

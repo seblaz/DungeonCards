@@ -19,7 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         DungeonCards juego = new DungeonCards(new GeneradorRandom());
-        VistaTablero vistaTablero = new VistaTablero(juego.tablero());
+        VistaTablero vistaTablero = new VistaTablero(juego.tablero(), juego.heroe());
 
         var scene = new Scene(vistaTablero);
         stage.setScene(scene);

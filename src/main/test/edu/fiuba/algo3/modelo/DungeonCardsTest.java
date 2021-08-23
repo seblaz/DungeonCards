@@ -27,4 +27,9 @@ public class DungeonCardsTest {
     public void elHeroeSeGeneraEnElCentro() {
         assertTrue(juego.tablero().obtener(new Vector(1, 1)) instanceof Heroe);
     }
+
+    @Test
+    public void devuelveElMismoHeroe() {
+        assertEquals(juego.heroe(), juego.heroe());
+    }
 }

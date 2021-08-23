@@ -10,8 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TableroTest {
 
@@ -266,6 +265,24 @@ public class TableroTest {
         Tablero tablero = TableroEjemplo.crear().build();
 
         assertEquals(3, tablero.dimension());
+    }
+
+    @Test
+    public void informaSiSeDestruyeUnaCarta() {
+        Heroe heroe = new Heroe();
+        Carta[][] cartas = cartas();
+        Observador observador = mock(Observador.class);
+        Carta cartaADestruir = mock(Carta.class);
+
+        when(cartaADestruir.activar(heroe)).thenReturn(false);
+        cartas[1][1] = heroe;
+        cartas[1][0] = cartaADestruir;
+
+        Tablero tablero = TableroEjemplo.crear().conCartas(cartas).build();
+        tablero.agregarObservador(observador);
+        tablero.activar(heroe, cartaADestruir);
+
+        verify(observador).actualizar();
     }
 }
 
