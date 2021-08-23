@@ -100,4 +100,5 @@ public class HeroeTest {
         heroe.atacar(new Enemigo(1));
 
         verify(observador).actualizar();
-    }}
+    }
+}
