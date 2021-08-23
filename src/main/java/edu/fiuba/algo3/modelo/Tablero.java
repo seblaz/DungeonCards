@@ -34,6 +34,10 @@ public class Tablero {
         }
     }
 
+    public int dimension() {
+        return DIMENSION;
+    }
+
     public Carta obtener(Vector posicion) {
         this.validarLimites(posicion);
         return this.cartas[posicion.y()][posicion.x()];

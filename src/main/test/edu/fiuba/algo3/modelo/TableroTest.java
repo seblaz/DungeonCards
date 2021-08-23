@@ -260,5 +260,12 @@ public class TableroTest {
                 Arguments.of((Object) new Carta[][]{{new CartaEjemplo(), new CartaEjemplo(), new CartaEjemplo()}, {new CartaEjemplo()}, {new CartaEjemplo()}})
         );
     }
+
+    @Test
+    public void devuelve3ComoDimension() {
+        Tablero tablero = TableroEjemplo.crear().build();
+
+        assertEquals(3, tablero.dimension());
+    }
 }
 
