@@ -6,7 +6,7 @@ public class DungeonCards {
     public DungeonCards(IGeneradorRandom random) {
         Carta[][] cartas =  new Carta[][]{
                 {new Enemigo(1), new Enemigo(1), new Enemigo(1)},
-                {new Enemigo(1), new Enemigo(1), new Enemigo(1)},
+                {new Enemigo(1), new Heroe(), new Enemigo(1)},
                 {new Enemigo(1), new Enemigo(1), new Enemigo(1)}
         };
         this.tablero = new Tablero(new GeneradorDeCartas(random, 10), cartas);
