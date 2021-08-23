@@ -11,7 +11,7 @@ public class DungeonCardsTest {
     private DungeonCards juego;
 
     @BeforeEach
-    public void crearTablero() {
+    public void crearJuego() {
         IGeneradorRandom random = mock(IGeneradorRandom.class);
         when(random.nuevo()).thenReturn(0.5);
         this.juego = new DungeonCards(random);
