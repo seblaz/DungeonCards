@@ -19,20 +19,20 @@
       <VBox.margin>
          <Insets/>
       </VBox.margin>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="10" textOrigin="TOP" x="10.0">
+      <Text fx:id="salud" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textOrigin="TOP" x="10.0">
          <font>
             <Font size="24.0"/>
          </font>
       </Text>
    </Pane>
-   <BorderPane prefHeight="200.0" prefWidth="200.0">
+   <BorderPane prefHeight="100.0" prefWidth="100.0">
       <center>
-         <ImageView cache="true" fitHeight="290.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true"
+         <ImageView cache="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true"
                     smooth="false" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                <Insets/>
             </BorderPane.margin>
-            <Image url="@../img/heroe.png"/>
+            <Image url="@../img/heroe.png" requestedWidth="100" preserveRatio="true"/>
          </ImageView>
       </center>
    </BorderPane>

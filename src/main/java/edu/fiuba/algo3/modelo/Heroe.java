@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Heroe implements Carta {
+public class Heroe extends Observable implements Carta {
     private final Salud salud;
 
     public Heroe() {
