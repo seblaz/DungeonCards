@@ -14,7 +14,7 @@
         <javafx-controls-version>16</javafx-controls-version>
         <javafx-graphics-version>16</javafx-graphics-version>
         <fxml-version>11.0.1</fxml-version>
-        <main-class>juego/edu.fiuba.algo3.Main</main-class>
+        <main-class>edu.fiuba.algo3.Main</main-class>
     </properties>
     <dependencies>
         <dependency>
@@ -81,7 +81,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.6</version>
                 <configuration>
-                    <mainClass>${main-class}</mainClass>
+                    <mainClass>juego/${main-class}</mainClass>
                 </configuration>
             </plugin>
             <plugin>
