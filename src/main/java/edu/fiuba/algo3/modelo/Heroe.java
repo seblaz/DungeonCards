@@ -24,7 +24,7 @@ public class Heroe extends Observable implements Carta {
 
     @Override
     public boolean activa() {
-        return this.salud.vivo();
+        return true;
     }
 
     public boolean activar(Heroe heroe) {

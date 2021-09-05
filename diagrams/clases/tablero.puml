@@ -1,0 +1,29 @@
+@startuml
+
+interface Carta {
+  + activar(Heroe): boolean
+}
+
+class Tablero {
+  + activar(Heroe, Carta)
+}
+
+class GeneradorDeCartas {
+  + nueva(): Carta
+}
+
+interface IGeneradorRandom {
+  + nuevo(): double
+}
+
+class Vector {
+  + x(): int
+  + y(): int
+}
+
+Tablero "1" --> "9" Carta
+Tablero "1" -> "1" GeneradorDeCartas
+GeneradorDeCartas "1" --> "1" IGeneradorRandom
+Tablero .left.> Vector
+
+@enduml

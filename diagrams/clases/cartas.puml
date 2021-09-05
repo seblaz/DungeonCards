@@ -1,0 +1,18 @@
+@startuml
+
+interface Carta {
+  + activar(Heroe): boolean
+  + recibirDanio(int)
+  + activa(): boolean
+}
+
+class Heroe implements Carta {
+  + puntosDeSalud(): int
+  + atacar(Enemigo)
+}
+
+class Enemigo implements Carta {
+  + puntosDeSalud(): int
+}
+
+@enduml

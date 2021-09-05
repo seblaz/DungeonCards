@@ -1,0 +1,169 @@
+@startuml
+class edu.fiuba.algo3.Main {
++ {static} void main(String[])
+}
+class edu.fiuba.algo3.vista.VistaCarta {
+- Carta carta
++ Carta carta()
+}
+class edu.fiuba.algo3.modelo.Observable {
+- List<Observador> observadores
++ void agregarObservador(Observador)
++ void notificar()
+}
+class edu.fiuba.algo3.vista.escenas.GameScene {
+}
+class edu.fiuba.algo3.vista.VistaTablero {
+- Pane root
+- Tablero tablero
+- Heroe heroe
++ void actualizar()
+- List<Node> vistasCartas()
+- void transiciones()
+- Transition transicionCartaDestruida(Node)
+- Transition transicionCartaMovida(VistaCarta,Vector)
+- void dibujar()
+}
+class edu.fiuba.algo3.modelo.Vector {
+- int x
+- int y
++ int x()
++ int y()
++ Vector restar(Vector)
++ boolean equals(Object)
++ int hashCode()
++ Vector sumar(Vector)
++ Vector multiplicar(int)
+}
+class edu.fiuba.algo3.modelo.CartaNoEncontrada {
+}
+class edu.fiuba.algo3.App {
++ void start(Stage)
++ {static} void main(String[])
+}
+interface edu.fiuba.algo3.modelo.Carta {
+~ boolean activar(Heroe)
+~ void recibirDanio(int)
+~ boolean activa()
+}
+class edu.fiuba.algo3.controlador.Test {
+}
+class edu.fiuba.algo3.vista.VistaHeroe {
+- Pane root
+- Heroe heroe
++ void actualizar()
+}
+class edu.fiuba.algo3.modelo.CartasInvalidas {
+}
+class edu.fiuba.algo3.modelo.Tablero {
+- {static} int DIMENSION
+- GeneradorDeCartas generadorDeCartas
+- Carta[][] cartas
+- void validarCartas(Carta[][])
++ int dimension()
++ Carta obtener(Vector)
+- boolean dentroDeLimites(Vector)
+- void validarLimites(Vector)
+- void asignar(Carta,Vector)
++ Vector posicion(Carta)
++ Carta obtenerAdyacente(Carta,Direccion)
++ void activar(Heroe,Carta)
+- void reemplazarCartaDestruida(Heroe,Carta)
+- void moverHeroeDentroDeLimite(Heroe,Carta,Vector,Vector)
+- void moverHeroeFueraDeLimite(Heroe,Carta,Vector)
+- Vector posicionOpuesta(Carta,Vector)
+- void mover(Carta,Vector)
+- Vector velocidad(Carta,Carta)
+}
+interface edu.fiuba.algo3.modelo.IGeneradorRandom {
+~ double nuevo()
+}
+class edu.fiuba.algo3.vista.Loader {
++ {static} T load(String)
+}
+class edu.fiuba.algo3.vista.VistaEnemigo {
+- HBox root
+- Enemigo enemigo
++ void actualizar()
+}
+interface edu.fiuba.algo3.vista.VistaFactory {
+~ R vista(T)
+}
+class edu.fiuba.algo3.modelo.GeneradorDeCartas {
+- IGeneradorRandom generadorRandom
+- int puntosMaximos
++ Carta nueva()
+}
+class edu.fiuba.algo3.vista.FXMLException {
+}
+class edu.fiuba.algo3.modelo.GeneradorRandom {
+- Random random
++ double nuevo()
+}
+class edu.fiuba.algo3.modelo.PosicionFueraDeLimites {
+}
+class edu.fiuba.algo3.modelo.DungeonCards {
+- Tablero tablero
+- Heroe heroe
++ Tablero tablero()
++ Heroe heroe()
+}
+interface edu.fiuba.algo3.modelo.Observador {
+~ void actualizar()
+}
+class edu.fiuba.algo3.SystemInfo {
++ {static} String javaVersion()
++ {static} String javafxVersion()
+}
+class edu.fiuba.algo3.controlador.ControladorCarta {
+- Carta carta
+- Tablero tablero
+- Heroe heroe
++ void handle(MouseEvent)
+}
+class edu.fiuba.algo3.modelo.Heroe {
+- Salud salud
++ int puntosDeSalud()
++ void atacar(Enemigo)
++ void recibirDanio(int)
++ boolean activa()
++ boolean activar(Heroe)
+}
+class edu.fiuba.algo3.modelo.Enemigo {
+- Salud salud
++ int puntosDeDanio()
++ int puntosDeSalud()
++ void recibirDanio(int)
++ boolean activa()
++ boolean activar(Heroe)
+}
+class edu.fiuba.algo3.modelo.Salud {
+- int puntos
++ int puntos()
++ void disminuir(int)
++ boolean vivo()
+}
+
+
+javafx.scene.layout.HBox <|-- edu.fiuba.algo3.vista.VistaCarta
+javafx.scene.Scene <|-- edu.fiuba.algo3.vista.escenas.GameScene
+edu.fiuba.algo3.vista.Observador <|.. edu.fiuba.algo3.vista.VistaTablero
+javafx.scene.layout.HBox <|-- edu.fiuba.algo3.vista.VistaTablero
+edu.fiuba.algo3.modelo.RuntimeException <|-- edu.fiuba.algo3.modelo.CartaNoEncontrada
+javafx.application.Application <|-- edu.fiuba.algo3.App
+edu.fiuba.algo3.modelo.Observador <|.. edu.fiuba.algo3.vista.VistaHeroe
+javafx.scene.layout.HBox <|-- edu.fiuba.algo3.vista.VistaHeroe
+edu.fiuba.algo3.modelo.RuntimeException <|-- edu.fiuba.algo3.modelo.CartasInvalidas
+edu.fiuba.algo3.modelo.Observable <|-- edu.fiuba.algo3.modelo.Tablero
+javafx.fxml.FXMLLoader <|-- edu.fiuba.algo3.vista.Loader
+edu.fiuba.algo3.modelo.Observador <|.. edu.fiuba.algo3.vista.VistaEnemigo
+javafx.scene.layout.HBox <|-- edu.fiuba.algo3.vista.VistaEnemigo
+edu.fiuba.algo3.vista.RuntimeException <|-- edu.fiuba.algo3.vista.FXMLException
+edu.fiuba.algo3.modelo.IGeneradorRandom <|.. edu.fiuba.algo3.modelo.GeneradorRandom
+edu.fiuba.algo3.modelo.RuntimeException <|-- edu.fiuba.algo3.modelo.PosicionFueraDeLimites
+javafx.event.EventHandler <|.. edu.fiuba.algo3.controlador.ControladorCarta
+edu.fiuba.algo3.modelo.Carta <|.. edu.fiuba.algo3.modelo.Heroe
+edu.fiuba.algo3.modelo.Observable <|-- edu.fiuba.algo3.modelo.Heroe
+edu.fiuba.algo3.modelo.Carta <|.. edu.fiuba.algo3.modelo.Enemigo
+edu.fiuba.algo3.modelo.Observable <|-- edu.fiuba.algo3.modelo.Enemigo
+@enduml

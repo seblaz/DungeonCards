@@ -82,8 +82,8 @@ public class Tablero extends Observable {
     }
 
     private void reemplazarCartaDestruida(Heroe heroe, Carta carta) {
-        Vector direccionDeAtaque = this.velocidad(carta, heroe);
         Carta nuevaCarta = this.generadorDeCartas.nueva();
+        Vector direccionDeAtaque = this.velocidad(carta, heroe);
         Vector posicionOpuesta = this.posicionOpuesta(heroe, direccionDeAtaque);
 
         if (this.dentroDeLimites(posicionOpuesta)) {

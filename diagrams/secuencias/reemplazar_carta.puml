@@ -1,0 +1,40 @@
+@startuml
+
+!include config.puml
+
+title Tablero reemplaza carta destruida
+
+participant Tablero
+participant GeneradorDeCartas
+participant IGeneradorRandom
+participant "enemigo: Enemigo" as enemigo
+
+Tablero -> Tablero ++: reemplazarCartaDestruida(heroe, destruida)
+Tablero -> GeneradorDeCartas ++: nueva()
+GeneradorDeCartas -> IGeneradorRandom ++: nuevo()
+GeneradorDeCartas <-- IGeneradorRandom --: 0.5
+
+create enemigo
+GeneradorDeCartas -> enemigo: Enemigo(5)
+
+Tablero <-- GeneradorDeCartas --: enemigo
+
+Tablero -> Tablero ++: direccionDeAtaque = velocidad(heroe, destruida)
+deactivate Tablero
+
+Tablero -> Tablero ++: posicionOpuesta = posicionOpuesta(heroe, direccionDeAtaque)
+deactivate Tablero
+
+Tablero -> Tablero ++: cartaOpuesta = obtener(posicionOpuesta)
+deactivate Tablero
+
+Tablero -> Tablero ++: mover(heroe, direccionDeAtaque)
+deactivate Tablero
+
+Tablero -> Tablero ++: mover(cartaOpuesta, direccionDeAtaque)
+deactivate Tablero
+
+Tablero -> Tablero ++: asignar(enemigo, posicionOpuesta)
+deactivate Tablero
+
+@enduml

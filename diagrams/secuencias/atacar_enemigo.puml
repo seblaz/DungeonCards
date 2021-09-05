@@ -1,0 +1,29 @@
+@startuml
+
+!include config.puml
+
+title Heroe ataca enemigo con 1 de vida y lo destruye
+
+actor Usuario
+participant Tablero
+participant "enemigo: Enemigo" as enemigo
+participant "heroe: Heroe" as heroe
+
+Usuario -> Tablero ++: activar(heroe, enemigo)
+Tablero -> enemigo ++: activar(heroe)
+enemigo -> heroe ++: atacar(enemigo)
+heroe -> enemigo ++: recibirDanio(1)
+deactivate enemigo
+heroe -> heroe ++: recibirDanio(1)
+deactivate heroe
+heroe --> enemigo --
+enemigo --> Tablero --: false
+
+deactivate enemigo
+
+Tablero -> Tablero ++: reemplazarCartaDestruida(heroe, enemigo)
+deactivate Tablero
+
+Tablero --> Usuario --
+
+@enduml
